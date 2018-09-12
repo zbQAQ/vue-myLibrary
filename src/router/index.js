@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import AppComponent from '../App'
-import WelComponent from '@/components/WelComponent'
-import IndexComponent from '@/components/IndexComponent'
+import WelCome from '@/components/welcome/welcome'
+import IndexPage from '@/components/index/indexpage'
+import NewsList from '@/components/news/newslist'
 
 Vue.use(Router)
 
@@ -17,13 +18,19 @@ export default new Router({
     {
       path: '/welcome',
       name: 'welcome',
-      component: WelComponent
+      component: WelCome
     },
 
     {
       path: '/index',
       name: 'index',
-      component: IndexComponent
+      component: IndexPage
+    },
+
+    {
+      path: '/news/newslist',
+      name: 'newslist',
+      component: NewsList
     }
 
   ]

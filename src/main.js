@@ -3,7 +3,9 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import './global.css'
+import './components/global.css' //全局样式
+import '../node_modules/animate.css/animate.min.css' //animate动画样式
+import '../node_modules/font-awesome/css/font-awesome.min.css' //font-awesome导入图标库
 
 Vue.config.productionTip = false
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="app" id="app" @mousemove="changeMouse" @click="closeFuncSel">
+  <div class="app" id="app" @click="closeFuncSel">
 
     <div class="navbox" :class="{ onNavShow: navShowFlag }">
 
@@ -33,6 +33,10 @@
       </div>
 
     </div>
+    
+    <div class="navshowbtn" v-if="toggleFlag" @click="navShow">
+      <i class="fa fa-bars"></i>
+    </div>
 
     <router-view></router-view>
 
@@ -50,16 +54,16 @@ export default {
   name: 'welcome',
   data() {
     return {
-      mouseY: 0,
       navShowFlag: false,
-      funcSelFlag: false
+      funcSelFlag: false,
+      toggleFlag: true,
+      
     }
   },
+  mounted() {
+    this.routeNav()
+  },
   methods: {
-
-    changeMouse(e) {
-      this.mouseY = e.clientY
-    },
 
     closeFuncSel(e) {
       const target = e.target.className
@@ -68,20 +72,25 @@ export default {
       }else{
         this.funcSelFlag = false
       }
+    },
+
+    navShow() {
+      this.navShowFlag = !this.navShowFlag
+    },
+    
+    routeNav() {
+      let route = this.$route
+      if(route.path === '/welcome') {
+          this.toggleFlag = true
+        }else{
+          this.navShowFlag = true
+          this.toggleFlag = false
+      }
     }
 
   },
   watch: {
-    mouseY(val) {
-      const winHeight = document.documentElement.clientHeight
-      if(val > winHeight/3) {
-        this.navShowFlag = false
-        this.funcSelFlag = false
-      }else{
-        this.navShowFlag = true
-      }
-
-    }
+    '$route': 'routeNav'
   }
 }
 </script>
@@ -152,6 +161,19 @@ export default {
 }
 .navbox .navlist .navitem .select .selul .selitem:hover{
   color: #cac9c9;
+}
+.navshowbtn{
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  width: 30px;
+  height: 30px;
+  background: transparent;
+  z-index: 999;
+}
+.navshowbtn i{
+  font-size: 2em;
+  color: #fff;
 }
 
 .footer {

@@ -34,7 +34,7 @@
 
     </div>
     
-    <div class="navshowbtn" v-if="toggleFlag" @click="navShow">
+    <div class="navshowbtn" v-show="toggleFlag" @click="navShow"> <!--导航按钮-->
       <i class="fa fa-bars"></i>
     </div>
 
@@ -170,6 +170,7 @@ export default {
   height: 30px;
   background: transparent;
   z-index: 999;
+  cursor: pointer;
 }
 .navshowbtn i{
   font-size: 2em;

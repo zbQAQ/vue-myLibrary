@@ -35,7 +35,7 @@ export default new Router({
     },
 
     {
-      path: '/news/new/:id',
+      path: '/news/new/:art_id',
       name: 'new',
       component: New
     }

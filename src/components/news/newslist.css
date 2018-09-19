@@ -60,7 +60,12 @@
     height: 100%;
     overflow: hidden;
   }
-  .main .content .newsUl .newli .thumb img{
+  .main .content .newsUl .newli .thumb a{
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+  }
+  .main .content .newsUl .newli .thumb a img{
     width: 100%;
     height: 100%;
     transition: 0.3s ease;

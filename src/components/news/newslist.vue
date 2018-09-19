@@ -12,13 +12,13 @@
       <div class="newsUl">
         <div class="newli" v-for="(item,index) in newstlist">
           <div class="thumb">
-            <img :src=" 'http://localhost/laravel-blog/' + item.art_thumb " alt="">  
+            <router-link :to="'/news/new/' + item.art_id"><img :src="'http://localhost/laravel-blog/' + item.art_thumb " alt=""> </router-link> 
           </div>
           <div class="info">
 
-            <div class="title"> <a href="#" v-html="item.art_title"></a> </div>
+            <div class="title"> <router-link :to="'/news/new/' + item.art_id" v-html="item.art_title"></router-link> </div>
             <div class="desc">
-              <a href="#" v-html="item.art_description"></a>
+              <router-link :to="'/news/new/' + item.art_id" v-html="item.art_description"></router-link>
            </div>
 
             <div class="otherbox">
@@ -63,20 +63,24 @@ export default {
       newstlist: []
     }
   },
-  created() {
-    this.getArticle()
+  async created() {
+    this.newstlist = await this.getArticle()
+    // console.log(this.newstlist)
   },
   methods: {
-    getArticle() {
-      this.$axios.get('api/getArticle')
-      .then((res)=>{
-        if(res.data.msg === 'success' && res.data.status === 1) {
-          this.newstlist = res.data.data
-          // console.log(this.newstlist)
+    async getArticle() {
+      try {
+        const res = await this.$axios.get('api/getArticle')
+        if(res.data.status === 1 && res.data.msg === 'success') {
+          // console.log(this)
+          return res.data.data
         }
-      }).catch((res)=>{
-        console.log(res); //暂时
-      })
+        return null
+      } catch (e) {
+        console.log(e)
+        return null
+      }
+      
     }
   },
 }

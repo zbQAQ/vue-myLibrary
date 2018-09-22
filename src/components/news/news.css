@@ -32,6 +32,26 @@
   z-index: 2;
 }
 
+.main .content .goback{
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 100px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  cursor: pointer;
+}
+.main .content .goback p{
+  transition: 0.3s ease;
+  color: #bdbdbd;
+}
+.main .content .goback p:hover{
+  color: #999;
+}
+.main .content .goback p i{
+  margin-right: 10px;
+}
 
 .main .content .newview{
   padding: 0 30px;

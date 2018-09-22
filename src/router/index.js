@@ -4,7 +4,7 @@ import AppComponent from '../App'
 import WelCome from '@/components/welcome/welcome'
 import IndexPage from '@/components/index/indexpage'
 import NewsList from '@/components/news/newslist'
-import New from '@/components/news/new'
+import News from '@/components/news/news'
 
 Vue.use(Router)
 
@@ -36,8 +36,8 @@ export default new Router({
 
     {
       path: '/news/new/:art_id',
-      name: 'new',
-      component: New
+      name: 'news',
+      component: News
     }
 
   ]

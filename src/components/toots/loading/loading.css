@@ -1,0 +1,27 @@
+.loading-box{
+  line-height: 30px;
+  text-align: center;
+  margin: 20px 0;
+}
+  
+.loading-box .mask{
+  width: 30px;
+  height: 30px;
+  background: transparent;
+  margin: 0 auto;
+  border-radius: 50%;
+  border: 5px solid #ccc;
+  border-left-color: #508EC3;
+  border-right-color: #f0991e;
+  animation:loading 1.3s infinite;
+  animation-timing-function: ease;
+}
+
+@keyframes loading {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -9,6 +9,8 @@ import '../node_modules/font-awesome/css/font-awesome.min.css' //font-awesome导
 import axios from 'axios' //axios
 import {formatDate} from './components/toots/formatDate/formatDate.js' //时间格式化工具
 
+import loading from './components/toots/loading/loading.vue' //loading 组件
+
 Vue.config.productionTip = false
 /* eslint-disable no-new */
 
@@ -20,6 +22,8 @@ Vue.filter('datefmt', (input, fmt = 'yyyy-MM-dd') => {
   return formatDate(date, fmt);
   
 });
+
+Vue.component('loading', loading)
 
 new Vue({
   el: '#app',

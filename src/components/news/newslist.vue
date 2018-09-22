@@ -9,8 +9,9 @@
 
     <div class="content">
 
-      <div class="newsUl">
-        <div class="newli" v-for="(item,index) in newstlist">
+      <loading v-if="isLoading"></loading> 
+      <div class="newsUl" v-if="!isLoading">
+        <div class="newli" v-for="(item, index) in newstlist">
           <div class="thumb">
             <router-link :to="'/news/new/' + item.art_id"><img :src="'http://localhost/laravel-blog/' + item.art_thumb " alt=""> </router-link> 
           </div>
@@ -60,11 +61,13 @@ export default {
   data(){
     return {
       msg: 'newslist',
-      newstlist: []
+      newstlist: [],
+      isLoading: true
     }
   },
   async created() {
     this.newstlist = await this.getArticle()
+    this.isLoading = false
     // console.log(this.newstlist)
   },
   methods: {

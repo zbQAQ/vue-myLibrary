@@ -37,12 +37,12 @@
 
 <script>
 export default {
-  name: 'new',
+  name: 'news',
   data(){
     return {
       art_id: 0,
       art: {},
-      msg: 'new',
+      msg: 'news',
       isLoading: true
     }
   },
@@ -73,5 +73,5 @@ export default {
 </script>
 
 <style scoped>
-  @import "news";
+  @import "./news.css";
 </style>

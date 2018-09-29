@@ -13,13 +13,13 @@
       <div class="newsUl" v-if="!isLoading">
         <div class="newli" v-for="(item, index) in newstlist">
           <div class="thumb">
-            <router-link :to="'/news/new/' + item.art_id"><img :src="'http://localhost/laravel-blog/' + item.art_thumb " alt=""> </router-link> 
+            <router-link :to="'/news/news/' + item.art_id"><img :src="'http://localhost/laravel-blog/' + item.art_thumb " alt=""> </router-link> 
           </div>
           <div class="info">
 
-            <div class="title"> <router-link :to="'/news/new/' + item.art_id" v-html="item.art_title"></router-link> </div>
+            <div class="title"> <router-link :to="'/news/news/' + item.art_id" v-html="item.art_title"></router-link> </div>
             <div class="desc">
-              <router-link :to="'/news/new/' + item.art_id" v-html="item.art_description"></router-link>
+              <router-link :to="'/news/news/' + item.art_id" v-html="item.art_description"></router-link>
            </div>
 
             <div class="otherbox">

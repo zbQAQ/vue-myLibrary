@@ -28,5 +28,5 @@ export default {
 </script>
 
 <style>
-@import "news";
+@import "./loading.css";
 </style>

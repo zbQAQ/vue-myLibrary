@@ -10,6 +10,7 @@ import axios from 'axios' //axios
 import {formatDate} from './components/toots/formatDate/formatDate.js' //时间格式化工具
 
 import loading from './components/toots/loading/loading.vue' //loading 组件
+import headnav from './components/toots/headnav/headnav.vue' //header 组件
 
 Vue.config.productionTip = false
 /* eslint-disable no-new */
@@ -24,6 +25,7 @@ Vue.filter('datefmt', (input, fmt = 'yyyy-MM-dd') => {
 });
 
 Vue.component('loading', loading)
+Vue.component('headnav', headnav)
 
 new Vue({
   el: '#app',

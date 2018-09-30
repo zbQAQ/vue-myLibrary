@@ -11,7 +11,7 @@
 
       <loading v-if="isLoading"></loading> 
       <div class="newsUl" v-if="!isLoading">
-        <div class="newli" v-for="(item, index) in newstlist">
+        <div class="newli" v-for="(item, index) in newstlist" :key="index">
           <div class="thumb">
             <router-link :to="'/news/news/' + item.art_id"><img :src="'http://localhost/laravel-blog/' + item.art_thumb " alt=""> </router-link> 
           </div>

@@ -13,28 +13,29 @@
       <div class="show-flag" v-if="!isLoading">
         <div class="catebox">
           <ul>
-            <li class="active"><a href="">全部</a> </li>
-            <li class=""><a href="">衣服</a></li>
-            <li class=""><a href="">衣服</a></li>
-            <li class=""><a href="">衣服</a></li>
-            <li class=""><a href="">衣服</a></li>
-            <li class=""><a href="">衣服</a></li>
-            <li class=""><a href="">衣服</a></li>
+            <li v-for="(item, index) in goodscate" :key="index" 
+              :class="{active: item === filter_cate}"
+              @click="doCateFill(item)"
+              >
+              <a href="javascript:;">{{item}}</a> 
+            </li>
           </ul>
         </div>
 
         <div class="searchbox">
           <div class="search">
-            <input type="text" class="search-input">
-            <a href="#"><i class="fa fa-search"></i></a>
+            <input type="text" class="search-input" placeholder="输入查找的商品名字" v-model="filter_name">
+            <a href="javascript:;" @click="doNameFill"><i class="fa fa-search"></i></a>
           </div>
         </div>
 
         <div class="goodsbox">
 
           <div class="goods">
-
-            <div class="goods-card" v-for="(item, index) in goodslist">
+            <div class="goods-null" v-show="goodslist.length < 1">
+              <p>好像没有相关商品哦...</p>
+            </div>  
+            <div class="goods-card" v-for="(item, index) in goodslist" :key="index">
 
               <router-link :to="'/goods/goods/' + item.goods_id" class="imgbox">
                 <img :src="'http://localhost/laravel-blog/' + item.goods_thumb " alt="">
@@ -72,14 +73,21 @@ export default {
     return {
       msg: 'goodslist',
       goodslist: [],
-      isLoading: true
+      goodscate: [],
+      isLoading: true,
+      filter_cate: '全部',
+      filter_name: '',
     }
   },
   async created() {
     this.goodslist = await this.getGoodslist()
+    this.goodscate = await this.getGoodscate()
     this.isLoading = false
   },
   methods: {
+    strToArray(text) {
+      return Array.prototype.slice.call(text);
+    },
     async getGoodslist() {
       try {
         const res = await this.$axios.get('api/getGoodslist')
@@ -92,6 +100,51 @@ export default {
         console.log(e)
         return null
       }
+      
+    },
+    async getGoodscate() {
+      try {
+        const res = await this.$axios.get('api/getGoodscate')
+        if(res.data.status === 1 && res.data.msg === 'success') {
+          // console.log(this)
+          let data = res.data.data
+          let filter = ['全部'] //默认第一个是全部
+          for(let v of data) {  //将获取到的商品分类处理 只需要分类名称
+            filter.push(v.gcate_name)
+          }
+          return filter
+        }
+        return null
+      } catch (e) {
+        console.log(e)
+        return null
+      }
+    },
+    async doCateFill(cate) {
+      this.isLoading = true
+      this.filter_cate = cate
+      const list = await this.getGoodslist()
+      this.goodslist = list.filter( (val) => {
+        if(this.filter_cate === '全部') {
+          return true
+        }
+        return val.goods_cate_name === this.filter_cate
+      })
+      this.filter_name = ''
+      this.isLoading = false
+    },
+    async doNameFill() {
+      const fname = this.strToArray(this.filter_name.replace(/^\s*|\s*$/g,""))
+      const list = await this.getGoodslist()
+      console.log(fname)
+      
+      this.goodslist = list.filter( (val) => {
+
+        for(let v of fname) {
+          return val.goods_name.includes(v)
+        }
+        
+      })
       
     }
   },

@@ -2,7 +2,7 @@
   <transition
     name="loading"
     enter-active-class="animated fadeIn"
-    leave-active-class="animated fadeOut"
+    leave-active-class="animated fadeOutDown"
   >
     <div class="loading-box">
       

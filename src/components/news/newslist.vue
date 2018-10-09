@@ -56,35 +56,28 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'newslist',
   data(){
     return {
       msg: 'newslist',
-      newstlist: [],
-      isLoading: true
+      isLoading: true,
     }
   },
-  async created() {
-    this.newstlist = await this.getArticle()
-    this.isLoading = false
-    // console.log(this.newstlist)
+  async created () {
+    await this.getNewslist()
+    this.isLoading = false;
   },
   methods: {
-    async getArticle() {
-      try {
-        const res = await this.$axios.get('api/getArticle')
-        if(res.data.status === 1 && res.data.msg === 'success') {
-          // console.log(this)
-          return res.data.data
-        }
-        return null
-      } catch (e) {
-        console.log(e)
-        return null
-      }
-      
-    }
+    ...mapActions([
+      'getNewslist'
+    ])
+  },
+  computed: {
+    ...mapGetters([
+      'newstlist'
+    ])
   },
 }
 </script>

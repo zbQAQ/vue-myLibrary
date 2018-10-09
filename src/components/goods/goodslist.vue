@@ -9,8 +9,8 @@
 
     <div class="content">
 
-      <loading v-if="isLoading"></loading>
-      <div class="show-flag" v-if="!isLoading">
+      
+      <div class="show-flag" >
         <div class="catebox">
           <ul>
             <li v-for="(item, index) in goodscate" :key="index" 
@@ -30,8 +30,8 @@
         </div>
 
         <div class="goodsbox">
-
-          <div class="goods">
+          <loading v-if="isLoading"></loading>
+          <div class="goods" v-if="!isLoading">
             <div class="goods-null" v-show="goodslist.length < 1">
               <p>好像没有相关商品哦...</p>
             </div>  
@@ -136,8 +136,9 @@ export default {
     async doNameFill() {
       const fname = this.strToArray(this.filter_name.replace(/^\s*|\s*$/g,""))
       const list = await this.getGoodslist()
-      console.log(fname)
-      
+      if(fname.length <= 0) {
+        return;
+      }
       this.goodslist = list.filter( (val) => {
 
         for(let v of fname) {

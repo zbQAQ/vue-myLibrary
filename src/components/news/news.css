@@ -25,12 +25,13 @@
   margin: 0 auto;
   background:#fff;
   padding-top: 50px; 
-  padding-bottom: 50px; 
+  padding-bottom: 70px; 
   box-shadow: 1px 1px 14px -5px #585858;
   border-radius: 2px;
   overflow: hidden;
   box-sizing: border-box;
   z-index: 2;
+  min-height: 40px;
 }
 
 .main .content .goback{

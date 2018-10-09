@@ -14,18 +14,18 @@
 
       <loading v-if="isLoading"></loading> 
       <div class="newview" v-if="!isLoading">
-        <div class="title">{{art.art_title}}</div>
+        <div class="title">{{news.art_title}}</div>
         <div class="info">
           <ul>
-            <li><i class="fa fa-pencil"></i>作者：<span>{{art.art_editor}}</span></li>
-            <li><i class="fa fa-eye"></i>时间：<span>{{art.art_time | datefmt}}</span></li>
-            <li><i class="fa fa-clock-o"></i>阅读数: <span>{{art.art_view}}</span></li>
+            <li><i class="fa fa-pencil"></i>作者：<span>{{news.art_editor}}</span></li>
+            <li><i class="fa fa-eye"></i>时间：<span>{{news.art_time | datefmt}}</span></li>
+            <li><i class="fa fa-clock-o"></i>阅读数: <span>{{news.art_view}}</span></li>
           </ul> 
         </div>
         <div class="thumb">
-          <img alt="" :src="'http://localhost/laravel-blog/' + art.art_thumb">
+          <img alt="" :src="'http://localhost/laravel-blog/' + news.art_thumb">
         </div>
-        <div class="newcon" v-html="art.art_content">
+        <div class="newcon" v-html="news.art_content">
           <!-- more text -->
           
         </div>
@@ -36,38 +36,36 @@
 </template>
 
 <script>
+import { mapGetters, mapActions, mapMutations } from 'vuex'
 export default {
   name: 'news',
   data(){
     return {
-      art_id: 0,
-      art: {},
       msg: 'news',
-      isLoading: true
+      isLoading: true,
     }
   },
   async created() {
-    this.art_id = this.$route.params.art_id
-    this.art = await this.getNew()
+    this.getId(this.$route.params.art_id)
+    await this.getNews(this.newsId)
     this.isLoading = false
   },
   methods: {
-    async getNew() {
-      try {
-        const res = await this.$axios.get('api/getArt/' + this.art_id)
-        if(res.data.status === 1 && res.data.msg === 'success') {
-          // console.log(res)
-          return res.data.data
-        }
-        return null
-      } catch (e) {
-        console.log(e)
-        return null
-      }
-    },
+    ...mapActions([
+      'getNews'
+    ]),
+    ...mapMutations({
+      getId: 'CHANGE_NEWS_ID'
+    }),
     goback() {
       this.$router.push({ path: '/news/newslist' })
     }
+  },
+  computed: {
+    ...mapGetters([
+      'news',
+      'newsId',
+    ])
   }
 }
 </script>

@@ -12,6 +12,8 @@ import {formatDate} from './components/toots/formatDate/formatDate.js' //时间�
 import loading from './components/toots/loading/loading.vue' //loading 组件
 import headnav from './components/toots/headnav/headnav.vue' //header 组件
 
+import store from './vuex/index' //引入vuex
+
 Vue.config.productionTip = false
 /* eslint-disable no-new */
 
@@ -30,6 +32,7 @@ Vue.component('headnav', headnav)
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

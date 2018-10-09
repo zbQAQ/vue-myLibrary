@@ -1,8 +1,9 @@
 <template>
   <transition
     name="loading"
+    mode="out-in"
     enter-active-class="animated fadeIn"
-    leave-active-class="animated fadeOutDown"
+    leave-active-class="animated fadeOut"
   >
     <div class="loading-box">
       

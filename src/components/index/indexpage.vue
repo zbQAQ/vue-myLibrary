@@ -5,38 +5,34 @@
     </div> -->
 
     <div class="content">
-      
-      <div class="funcItem Item1">
-        <div class="info">功能一</div>
-      </div>
-      <div class="funcItem Item2">
-        <div class="info">功能二</div>
-      </div>
-      <div class="funcItem Item3">
-        <div class="info">功能三</div>
-      </div>
-      <div class="funcItem Item4">
-        <div class="info">功能四</div>
-      </div>
-      <div class="funcItem Item5">
-        <div class="info">功能五</div>
-      </div>
-      <div class="funcItem Item6">
-        <div class="info">功能六</div>
-      </div>
-
-    </div>
-    
+      <h1>index vuex test</h1>
+      <h2>{{num}}</h2>
+      <button @click="addNumber">增加</button>
+    </div> 
   </div>
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'index',
   data(){
     return {
       data: 'index'
     }
+  },
+  methods: {
+    ...mapActions([
+      'changeNumber'
+    ]),
+    addNumber() {
+      this.changeNumber(1)
+    }
+  },
+  computed: {
+    ...mapGetters({
+      num: 'num'
+    })
   }
 }
 </script>
@@ -66,7 +62,7 @@ export default {
 .content{
   width: 80%;
   height: auto;
-  margin: 0 auto;
+  margin: 80px auto;
 }
 .content .funcItem{
   width: 100%;

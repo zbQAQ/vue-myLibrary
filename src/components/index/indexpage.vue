@@ -5,34 +5,40 @@
     </div> -->
 
     <div class="content">
-      <h1>index vuex test</h1>
-      <h2>{{num}}</h2>
-      <button @click="addNumber">增加</button>
+      <h1>transition test</h1>
+
+        <button @click="changeFlag()"> click me</button>
+
+        <transition name="component-fade" mode="out-in">
+          <p v-if="flag">123</p>
+          
+        </transition>
     </div> 
   </div>
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'index',
   data(){
     return {
-      data: 'index'
+      data: 'index',
+      view: 'v-a',
+      flag: true
+    }
+  },
+  components: {
+    'v-a': {
+      template: '<div>Component A</div>'
+    },
+    'v-b': {
+      template: '<div>Component B</div>'
     }
   },
   methods: {
-    ...mapActions([
-      'changeNumber'
-    ]),
-    addNumber() {
-      this.changeNumber(1)
+    changeFlag() {
+      this.flag = !this.flag
     }
-  },
-  computed: {
-    ...mapGetters({
-      num: 'num'
-    })
   }
 }
 </script>
@@ -72,5 +78,15 @@ export default {
 }
 
 .content .funcItem.Item1{}
+
+
+.component-fade-enter-active, .component-fade-leave-active {
+  transition: opacity .3s ease;
+}
+.component-fade-enter, .component-fade-leave-to
+/* .component-fade-leave-active for below version 2.1.8 */ {
+  opacity: 0;
+}
+
 
 </style>

@@ -7,10 +7,10 @@ import './components/global.css' //全局样式
 import '../node_modules/animate.css/animate.min.css' //animate动画样式
 import '../node_modules/font-awesome/css/font-awesome.min.css' //font-awesome导入图标库
 import axios from 'axios' //axios
-import {formatDate} from './components/toots/formatDate/formatDate.js' //时间格式化工具
+import { formatDate } from './components/tools/formatDate/formatDate.js' //时间格式化工具
 
-import loading from './components/toots/loading/loading.vue' //loading 组件
-import headnav from './components/toots/headnav/headnav.vue' //header 组件
+import loading from './components/tools/loading/loading.vue' //loading 组件
+import headnav from './components/tools/headnav/headnav.vue' //header 组件
 
 import store from './vuex/index' //引入vuex
 

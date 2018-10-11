@@ -24,7 +24,7 @@
 
         <div class="searchbox">
           <div class="search">
-            <input type="text" class="search-input" placeholder="输入查找的商品名字" v-model="filter_name">
+            <input type="text" class="search-input" placeholder="输入查找的商品名字" v-model="filter_name" @keyup.enter="doNameFill">
             <a href="javascript:;" @click="doNameFill"><i class="fa fa-search"></i></a>
           </div>
         </div>
@@ -35,26 +35,8 @@
             <div class="goods-null" v-show="goodslist.length < 1">
               <p>好像没有相关商品哦...</p>
             </div>  
-            <div class="goods-card" v-for="(item, index) in goodslist" :key="index">
-
-              <router-link :to="'/goods/goods/' + item.goods_id" class="imgbox">
-                <img :src="'http://localhost/laravel-blog/' + item.goods_thumb " alt="">
-              </router-link>
-              <div class="row row-1">
-                <div class="g-price"><i class="fa fa-cny"></i>{{item.goods_price}}</div>
-                <div class="g-cate"><span class="span-type">{{item.goods_cate_name}}</span></div>
-              </div>
-              <div class="row row-2">
-                <router-link to="" class="g-name">{{item.goods_name}}</router-link>
-              </div>
-              <div class="row row-3">
-                <div class="g-stock">
-                  <span>库存:</span> {{item.goods_stock}}
-                </div>
-                <div class="g-time">{{item.goods_time}}</div>
-              </div>
-
-            </div>
+            
+            <goods-card v-for="(item, index) in goodslist" :key="index" :goods="item"></goods-card>
 
           </div>
 
@@ -67,6 +49,7 @@
 </template>
 
 <script>
+import goodsCard from '@/components/tools/goodsCard/goodsCard'
 export default {
   name: 'goodslist',
   data(){
@@ -82,6 +65,9 @@ export default {
   async created() {
     this.goodslist = await this.getGoodslist()
     this.goodscate = await this.getGoodscate()
+    if(this.$route.query.cate) {
+      this.filter_cate = this.$route.query.cate
+    }
     this.isLoading = false
   },
   methods: {
@@ -123,6 +109,7 @@ export default {
     async doCateFill(cate) {
       this.isLoading = true
       this.filter_cate = cate
+      let goodslist = this.goodslist
       const list = await this.getGoodslist()
       this.goodslist = list.filter( (val) => {
         if(this.filter_cate === '全部') {
@@ -134,21 +121,30 @@ export default {
       this.isLoading = false
     },
     async doNameFill() {
+      this.isLoading = true
       const fname = this.strToArray(this.filter_name.replace(/^\s*|\s*$/g,""))
       const list = await this.getGoodslist()
       if(fname.length <= 0) {
         return;
       }
       this.goodslist = list.filter( (val) => {
-
         for(let v of fname) {
           return val.goods_name.includes(v)
         }
-        
       })
-      
+      this.filter_cate = '全部'
+      this.isLoading = false
     }
   },
+  components: {
+    'goods-card': goodsCard
+  },
+  watch: {
+    filter_cate(newval, oldval) {
+      // console.log(newval, oldval)
+      this.doCateFill(newval)
+    }
+  }
 }
 </script>
 

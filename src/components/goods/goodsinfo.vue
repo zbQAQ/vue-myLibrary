@@ -8,40 +8,66 @@
     </div>
 
     <div class="content">
-      <!-- {{goods_id}}
-      <loading v-if="isLoading"></loading> -->
-
-      <div class="pro-box">
+      <loading v-if="isLoading"></loading> 
+      <div class="pro-box" v-if="!isLoading">
 
         <div class="g-img">
-          <img src="../../assets/goodsTest.jpg" alt="">
+          <img :src="'http://localhost/laravel-blog/' + goods.goods_thumb" alt="">
         </div>
         <div class="g-info">
 
-          <div class="g-name"></div>
-          <div class="g-title"></div>
+          <div class="g-name">{{goods.goods_name}}</div>
+          <div class="g-title">{{goods.goods_description}}</div>
+
+          <div class="g-price">
+            <span class="g-key">现 价:</span>
+            <i class="fa fa-cny"></i>
+            <span class="price">{{goods.goods_price}}</span>
+          </div>
 
           <div class="g-sign">
-            <div class="g-price"></div>
-            <div class="g-time"></div>
+            <div class="g-cate">{{goods.gcate_name}}</div>
+            <div class="g-time">{{goods.goods_time | datefmt}}</div>
           </div>
-          
-          <div class="g-cate"></div>
 
-          <div class="ghr"></div> 
+          <div class="g-catedesc">
+            <span>更多分类 >> </span>
+            <span class="g-toCate" @click="CateToGoodslist(goods.gcate_name)">{{goods.gcate_title}}</span>
+          </div>
+
+          <div class="ghr">分割线</div> 
 
           <div class="g-select">
-            <div class="g-buynum"></div>
-            <div class="g-stock"></div>
+            <span class="g-key">数 量:</span>
+            <div class="g-buynum">
+              <a href="javascript:;" class="buy-add">
+                <i class="fa fa-plus"></i>
+              </a>
+              <input type="text" class="buy-number" value="1">
+              <a href="javascript:;" class="buy-reduce">
+                <i class="fa fa-minus"></i>
+              </a>
+            </div>
+            <span class="g-stock">库存：{{goods.goods_stock}}</span>
           </div>
 
-          <div class="buybtn"></div>
+          <div class="g-action">
+            <a href="javascript:;" class="btn-buy">
+              立即购买
+            </a>
+            <a href="javascript:;" class="btn-addToCart">
+              <i class="fa fa-shopping-cart"></i>加入购物车
+            </a>
+          </div>
 
         </div>
 
       </div>
 
     </div>
+
+    <div class="content pro-content" v-if="!isLoading" v-html="goods.goods_content"></div>
+
 
   </div>
 </template>
@@ -54,7 +80,7 @@ export default {
       msg: 'goodsInfo',
       goods_id: 0,
       goods: [],
-      isLoading: true
+      isLoading: true,
     }
   },
   async created() {
@@ -75,6 +101,9 @@ export default {
         console.log(e)
         return null
       }
+    },
+    CateToGoodslist(cate) {
+      this.$router.push({path:'/goods/goodslist', query:{cate: cate}})
     },
     goback() {
       this.$router.push({ path: '/goods/goodslist' })

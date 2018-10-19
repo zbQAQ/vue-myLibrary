@@ -7,6 +7,7 @@ import NewsList from '@/components/news/newslist'
 import News from '@/components/news/news'
 import GoodsList from '@/components/goods/goodslist'
 import GoodsInfo from '@/components/goods/goodsinfo'
+import Login from '@/components/login/login'
 
 Vue.use(Router)
 
@@ -50,6 +51,11 @@ export default new Router({
       path: '/goods/goods/:goods_id',
       name: 'goods',
       component: GoodsInfo
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: Login
     }
 
   ]

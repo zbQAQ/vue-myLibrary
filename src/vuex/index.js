@@ -4,6 +4,7 @@ import * as actions from './actions'
 import * as getters from './getters'
 
 import news from './modules/news'
+import goods from './modules/goods'
 
 Vue.use(Vuex)
 
@@ -14,5 +15,6 @@ export default new Vuex.Store({
   // 组合各个模块
   modules: {
     news,
+    goods,
   }
 })

@@ -216,10 +216,10 @@
 }
 .main .content .pro-box .g-info .g-action .btn-buy{
   width: 120px;
-  background: #b4d8f5;
-  border: 1px solid #5b9fd2;
+  background: #52b2ff;
+  border: 1px solid #69a4d0;
   margin-right: 15px;
-  color: #006dbb;
+  color: #ffffff;
 }
 .main .content .pro-box .g-info .g-action .btn-buy:hover{
   background: #98caf3;
@@ -241,11 +241,30 @@
   box-sizing: border-box;
   margin-top: 30px;
   min-height: 100px;
-  padding: 0 30px;
-  padding-bottom: 30px;
+  padding: 20px 30px 8px 30px;
+  /* padding-bottom: 30px; */
   text-align: center;
 }
+.main .content.pro-content img {
+  width: 100%;
+  max-width: 750px;
+  /* box-shadow: 15px 0px 10px -15px #999; */
+}
 
+.main .content.pro-content .tips{
+  width: 100%;
+  line-height: 20px;
+  margin-top: 8px;
+  color: #d8d3d3;
+  text-align: center;
+}
+.main .content.pro-content .tips a{
+  color: #d8d3d3;
+  transition: 0.15s ease;
+}
+.main .content.pro-content .tips a:hover{
+  color: #666;
+}
 
 @media (max-width: 1630px) {
   .main .headimg {
@@ -255,8 +274,41 @@
     width: 85%;
   }
 }
+
+@media (max-width: 900px) {
+  .main .content .pro-box .g-img {
+    position: relative;
+    left: 50%;
+    margin-left: -200px;
+    margin-bottom: 8px;
+  }
+
+  .main .content .pro-box .g-info {
+    width: 100%;
+    padding-left: 0;
+  }
+}
+
 @media (max-width: 750px) {
   .main .content {
     width: 95%;
   }
 }
+
+@media (max-width: 450px) {
+  .main .content .pro-box {
+   padding: 8px; 
+  }
+  .main .content .pro-box .g-img {
+    left: 0;
+    margin-left: 0;
+  }
+  .main .content .pro-box .g-info .g-action .btn-buy {
+    margin-right: 3px;
+  }
+  .main .content.pro-content {
+    margin-top: 15px;
+    padding: 8px;
+  }
+}
+

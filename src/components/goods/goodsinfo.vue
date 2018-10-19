@@ -66,49 +66,50 @@
 
     </div>
 
-    <div class="content pro-content" v-if="!isLoading" v-html="goods.goods_content"></div>
+    <div class="content pro-content" v-if="!isLoading">
 
+      <img v-for="(item, index) in goods.goods_content" :key="index" :src="'http://localhost/laravel-blog/' + item" alt="">
+      <p class="tips">自用练习 取自<a href="http://www.taobao.com">淘宝</a></p>
+
+    </div>
+
+    <goback path="/goods/goodslist">返回商品列表</goback>
 
   </div>
 </template>
 
 <script>
+import { mapGetters, mapActions, mapMutations } from 'vuex'
 export default {
   name: 'goodsInfo',
   data(){
     return {
       msg: 'goodsInfo',
-      goods_id: 0,
-      goods: [],
       isLoading: true,
     }
   },
   async created() {
-    this.goods_id = this.$route.params.goods_id
-    this.goods = await this.getGoods()
+    this.getGoods_id(this.$route.params.goods_id)
+    await this.getGoods(this.goods_id)
     this.isLoading = false
   },
   methods: {
-    async getGoods() {
-      try {
-        const res = await this.$axios.get('api/getGoods/' + this.goods_id)
-        if(res.data.status === 1 && res.data.msg === 'success') {
-          // console.log(res)
-          return res.data.data
-        }
-        return null
-      } catch (e) {
-        console.log(e)
-        return null
-      }
-    },
+    ...mapActions([
+      'getGoods'
+    ]),
+    ...mapMutations({
+      getGoods_id: 'CHANGE_GOODS_ID',
+    }),
     CateToGoodslist(cate) {
-      this.$router.push({path:'/goods/goodslist', query:{cate: cate}})
+      this.$router.push({path:'/goods/goodslist', query: {cate: cate}})
     },
-    goback() {
-      this.$router.push({ path: '/goods/goodslist' })
-    }
   },
+  computed: {
+    ...mapGetters([
+      'goods',
+      'goods_id'
+    ])
+  }
 }
 </script>
 

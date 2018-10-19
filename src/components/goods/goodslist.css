@@ -130,6 +130,13 @@
   color: #666;
   margin: 25px 0;
   text-align: center;
+  transition: 0.15s ease;
+}
+.main .content .goodsbox .goods .goods-null .show-all{
+  color: #999;
+  font-size: 12px;
+  margin: 8px 0;
+  cursor: pointer;
 }
 
 @media (max-width: 1630px) {

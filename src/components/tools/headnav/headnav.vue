@@ -26,7 +26,7 @@
           </transition>
         </div>
         <div class="navitem">
-          <router-link to="/index">主页</router-link>
+          <router-link to="/login">登录</router-link>
         </div>
 
       </div>

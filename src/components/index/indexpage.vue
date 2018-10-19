@@ -5,14 +5,10 @@
     </div> -->
 
     <div class="content">
-      <h1>transition test</h1>
+      <h1>input file test</h1>
 
-        <button @click="changeFlag()"> click me</button>
+      <input type="file" name="imgGroup" id="imgGroup" multiple>
 
-        <transition name="component-fade" mode="out-in">
-          <p v-if="flag">123</p>
-          
-        </transition>
     </div> 
   </div>
 </template>

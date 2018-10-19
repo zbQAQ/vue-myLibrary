@@ -6,11 +6,6 @@
     </div>
 
     <div class="content">
-      
-      <div class="goback" @click="goback()">
-        <p><i class="fa fa-chevron-left"></i>返回新闻列</p>
-      </div>
-
 
       <loading v-if="isLoading"></loading> 
       <div class="newview" v-if="!isLoading">
@@ -32,6 +27,9 @@
 
       </div>
     </div>
+
+    <goback path="/news/newslist">返回新闻列表</goback>
+
   </div>
 </template>
 
@@ -57,9 +55,6 @@ export default {
     ...mapMutations({
       getId: 'CHANGE_NEWS_ID'
     }),
-    goback() {
-      this.$router.push({ path: '/news/newslist' })
-    }
   },
   computed: {
     ...mapGetters([

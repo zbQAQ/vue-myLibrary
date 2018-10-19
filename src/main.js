@@ -11,6 +11,7 @@ import { formatDate } from './components/tools/formatDate/formatDate.js' //时�
 
 import loading from './components/tools/loading/loading.vue' //loading 组件
 import headnav from './components/tools/headnav/headnav.vue' //header 组件
+import goback from './components/tools/goback/goback.vue' //goback 组件
 
 import store from './vuex/index' //引入vuex
 
@@ -28,6 +29,7 @@ Vue.filter('datefmt', (input, fmt = 'yyyy-MM-dd') => {
 
 Vue.component('loading', loading)
 Vue.component('headnav', headnav)
+Vue.component('goback', goback)
 
 new Vue({
   el: '#app',

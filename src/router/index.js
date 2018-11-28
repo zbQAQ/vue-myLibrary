@@ -8,6 +8,7 @@ import News from '@/components/news/news'
 import GoodsList from '@/components/goods/goodslist'
 import GoodsInfo from '@/components/goods/goodsinfo'
 import Login from '@/components/login/login'
+import Cart from '@/components/cart/cart'
 
 Vue.use(Router)
 
@@ -56,6 +57,11 @@ export default new Router({
       path: '/login',
       name: 'login',
       component: Login
+    },
+    {
+      path: '/cart',
+      name: 'cart',
+      component: Cart
     }
 
   ]

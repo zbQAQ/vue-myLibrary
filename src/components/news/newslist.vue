@@ -13,7 +13,7 @@
       <div class="newsUl" v-if="!isLoading">
         <div class="newli" v-for="(item, index) in newstlist" :key="index">
           <div class="thumb">
-            <router-link :to="'/news/news/' + item.art_id"><img :src="'http://localhost/laravel-blog/' + item.art_thumb " alt=""> </router-link> 
+            <router-link :to="'/news/news/' + item.art_id"><img :src="item.art_thumb " alt=""> </router-link> 
           </div>
           <div class="info">
 
@@ -27,7 +27,7 @@
               <div class="editer">
                 <i class="fa fa-pencil"></i>
                 <span class="nkey">作者 : </span>
-                <span class="nvalue">{{item.art_editer}}</span>
+                <span class="nvalue">{{item.art_editor}}</span>
               </div>
 
               <div class="otime">
@@ -71,7 +71,7 @@ export default {
   },
   methods: {
     ...mapActions([
-      'getNewslist'
+      'getNewslist',
     ])
   },
   computed: {

@@ -60,6 +60,7 @@
     display: inline-block;
     width: 180px;
     height: 100%;
+    box-shadow: 8px 0px 15px -5px #989898;
     overflow: hidden;
   }
   .main .content .newsUl .newli .thumb a{

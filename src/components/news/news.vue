@@ -18,7 +18,7 @@
           </ul> 
         </div>
         <div class="thumb">
-          <img alt="" :src="'http://localhost/laravel-blog/' + news.art_thumb">
+          <img alt="" :src="news.art_thumb">
         </div>
         <div class="newcon" v-html="news.art_content">
           <!-- more text -->
@@ -45,15 +45,21 @@ export default {
   },
   async created() {
     this.getId(this.$route.params.art_id)
-    await this.getNews(this.newsId)
+    await this.getNews({
+      id: this.newsId, //传 id
+      $router: this.$router //传 router对象 vuex里需要操作路由跳转
+    })
+
     this.isLoading = false
+
+
   },
   methods: {
     ...mapActions([
       'getNews'
     ]),
     ...mapMutations({
-      getId: 'CHANGE_NEWS_ID'
+      getId: 'CHANGE_NEWS_ID',
     }),
   },
   computed: {

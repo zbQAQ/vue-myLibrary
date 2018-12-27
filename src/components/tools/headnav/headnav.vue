@@ -18,9 +18,9 @@
             <div class="select" v-if="funcSelFlag">
               <ul class="selul">
                 <router-link to="/news/newslist"><li class="selitem">新闻列</li></router-link>
-                <router-link to="/todo/todolist"><li class="selitem">记事本</li></router-link>
+                <!-- <router-link to="/todo/todolist"><li class="selitem">记事本</li></router-link> -->
                 <router-link to="/goods/goodslist"><li class="selitem">商品列</li></router-link>
-                <router-link to="/cart"><li class="selitem">购物车</li></router-link>
+                <!-- <router-link to="/cart"><li class="selitem">购物车</li></router-link> -->
               </ul>
             </div>
           </transition>

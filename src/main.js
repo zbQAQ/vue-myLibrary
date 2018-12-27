@@ -15,13 +15,14 @@ import goback from './components/tools/goback/goback.vue' //goback 组件
 
 import store from './vuex/index' //引入vuex
 
+// import mock from './mock/mock'
+require('./mock/mock')
+
 Vue.config.productionTip = false
 /* eslint-disable no-new */
 
-Vue.prototype.$axios = axios
-
 Vue.filter('datefmt', (input, fmt = 'yyyy-MM-dd') => {
-  // console.log(input, fmt)
+  // console.log(input, fmt, 'main datefmt')
 	var date = new Date(input);
   return formatDate(date, fmt);
   

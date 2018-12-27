@@ -3,6 +3,7 @@
  */
 import * as types from '../mutation-types'
 import posts from '@/request/requests'
+import mock from '@/request/requests_mock'
 
 // initial state
 const state = {
@@ -23,14 +24,28 @@ const getters = {
 const actions = {
   //获取新闻列表
   async getNewslist ({ commit }) {
-    const data = await posts.getNewslist()
+    const data = await mock.getNewslist()
     commit(types.GET_NEWSLIST, data)
   },
   //获取单个新闻
-  async getNews ({ commit }, id) {
-    const data = await posts.getNews(id)
-    commit(types.GET_ONE_NEWS, data)
-  }
+  //这里使用mock newslist的新闻 不发起新的请求 
+  //从而得到 newslist 获取id 和新闻详情对应 的效果
+  getNews ({ commit, state }, paramData) {
+
+    let id = paramData.id
+    let $router = paramData.$router
+
+    if(state.newstlist !== null && state.newstlist.length > 0) {
+      const data = state.newstlist[id - 1]
+      commit(types.GET_ONE_NEWS, data)
+      commit(types.CHANGE_NEWS_VIEW, 1) //触发修改阅读数事件
+    }else{
+      $router.push('/news/newslist')
+    }
+    
+  },
+  
+
 }
 
 // mutations
@@ -43,7 +58,10 @@ const mutations = {
   },
   [types.CHANGE_NEWS_ID](state, id) {
     state.newsinfo.newsId = id
-  }
+  },
+  [types.CHANGE_NEWS_VIEW](state, num) {
+    state.newsinfo.news.art_view += num
+  },
 }
 export default {
   state,

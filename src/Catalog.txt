@@ -5,8 +5,8 @@
 welcome --->index
              --->newlist
              --->goodslist
-             --->todolist 登录验证
-             --->cart   登录验证
+             --->todolist 
+             --->cart   
              --->
             
         --->github
@@ -14,3 +14,10 @@ welcome --->index
 
 
 >---- 9.11 暂定 ----<
+
+
+>---- 2018.12.27 计划 ----<
+
+不打算继续开发larvel后台 更新项目文件
+把项目文件数据修改成mock数据
+

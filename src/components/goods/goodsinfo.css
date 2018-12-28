@@ -245,9 +245,15 @@
   /* padding-bottom: 30px; */
   text-align: center;
 }
+.main .content.pro-content .title{
+  margin-bottom: 20px;
+  color: #666;
+}
+
 .main .content.pro-content img {
   width: 100%;
   max-width: 750px;
+  margin-bottom: 25px;
   /* box-shadow: 15px 0px 10px -15px #999; */
 }
 

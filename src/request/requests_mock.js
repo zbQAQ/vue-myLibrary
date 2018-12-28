@@ -1,7 +1,7 @@
 
 /**
  * 
- *  all request 
+ *  all request_mock
  * 
  */
 
@@ -37,7 +37,7 @@ export default class requests {
   }
   static async getGoodslist() { //获取商品列表
     try {
-      const res = await axios.get('api/getGoodslist')
+      const res = await axios.get('/mock/goodslist')
       if(res.data.status === 1 && res.data.msg === 'success') {
         console.log('getGoodslist mockdata:', res)
         return res.data.data
@@ -50,7 +50,7 @@ export default class requests {
   }
   static async getGoodscate() { //获取商品所有分类
     try {
-      const res = await axios.get('api/getGoodscate')
+      const res = await axios.get('/mock/goodscate')
       if(res.data.status === 1 && res.data.msg === 'success') {
         console.log('getGoodscate mockdata:', res)
         let data = res.data.data
@@ -66,41 +66,23 @@ export default class requests {
       return null
     }
   }
-  static async getGoods(id) { //获取单个商品
-    try {
-      const res = await axios.get('api/getGoods/' + id)
-      if(res.data.status === 1 && res.data.msg === 'success') {
-        // 返回的商品内容需要处理
-        console.log('getGoods mockdata:', res)
-        res.data.data.goods_content = res.data.data.goods_content.split('|')
-        // console.log(res.data.data)
-        return res.data.data
-      }
-      return null
-    } catch (e) {
-      console.log(e)
-      return null
-    }
-  }
-  static async login(payload) { //登录 返回登录结果信息
-    try {
-      const res = await axios.post('api/login', {
-        user_name: payload.user_name,
-        user_pass: payload.user_pass,
-        user_type: payload.user_type,
-      })
-      if(res.data.status === 1 && res.data.msg === 'success') {
-        // 返回的商品内容需要处理
-        res.data.data.goods_content = res.data.data.goods_content.split('|')
-        // console.log(res.data.data)
-        return res.data.data
-      }
-      return null
-    } catch (e) {
-      console.log(e)
-      return null
-    }
-  }
+  //mock数据 获取单个商品时是从已请求的list里面根据id查找 所以不需要重新请求单个商品
+  // static async getGoods(id) { //获取单个商品
+  //   try {
+  //     const res = await axios.get('api/getGoods/' + id)
+  //     if(res.data.status === 1 && res.data.msg === 'success') {
+  //       // 返回的商品内容需要处理
+  //       console.log('getGoods mockdata:', res)
+  //       res.data.data.goods_content = res.data.data.goods_content.split('|')
+  //       // console.log(res.data.data)
+  //       return res.data.data
+  //     }
+  //     return null
+  //   } catch (e) {
+  //     console.log(e)
+  //     return null
+  //   }
+  // }
   static async testMock() { //测试mock
     try {
       const res = await axios.get('/test/apiData')

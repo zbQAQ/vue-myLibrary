@@ -3,12 +3,14 @@
  */
 import * as types from '../mutation-types'
 import posts from '@/request/requests'
+import mock from '@/request/requests_mock'
 
 // initial state
 const state = {
   goodslist: {
     list: [],
     cate: [],
+    filter_list:[], //过滤后的list
     filter_cate: '全部',
     filter_name: '',
   },
@@ -20,7 +22,8 @@ const state = {
 }
 // getters
 const getters = {
-  goodslist: state => state.goodslist.list,
+  list: state => state.goodslist.list,
+  goodslist: state => state.goodslist.filter_list,
   goodscate: state => state.goodslist.cate,
   filter_cate: state => state.goodslist.filter_cate,
   filter_name: state => state.goodslist.filter_name,
@@ -30,28 +33,45 @@ const getters = {
 
 // actions
 const actions = {
-  async getGoodslist({ commit }, flag = false) {
-    const data = await posts.getGoodslist()
-    if(flag){
-      return data
+  async getGoodslist({ commit, state }) {
+    let data
+    if(state.goodslist.list.length > 0){
+      //判断 商品列是否有值 有就返回没有就请求数据
+      data = state.goodslist.list
     }else{
-      commit(types.GET_GOODSLIST, data)
+      data = await mock.getGoodslist()
+      commit(types.CHANGE_LIST, data)
     }
+    commit(types.GET_GOODSLIST, data)
   },
   async getGoodscate({ commit }) {
-    const data = await posts.getGoodscate()
+    const data = await mock.getGoodscate()
     commit(types.GET_GOODS_CATE, data)
   },
-  async getGoods({commit}, id) {
-    const data = await posts.getGoods(id)
-    commit(types.GET_ONE_GOODS, data)
+  async getGoods({commit}, paramData) {
+
+    let id = paramData.id
+    let $router = paramData.$router
+    let list = state.goodslist.list
+    if(list !== null && list.length > 0) {
+
+      const data = list.filter(v => v.goods_id == id)[0]
+      console.log('getGoods mockdata:', data)
+      commit(types.GET_ONE_GOODS, data)
+      commit(types.CHANGE_GOODS_VIEW, 1) //触发修改阅读数事件
+    }else{
+      $router.push('/goods/goodslist')
+    }
   }
 }
 
 // mutations
 const mutations = {
-  [types.GET_GOODSLIST](state, data) {
+  [types.CHANGE_LIST](state, data) {
     state.goodslist.list = data
+  },
+  [types.GET_GOODSLIST](state, data) {
+    state.goodslist.filter_list = data
   },
   [types.GET_GOODS_CATE](state, data) {
     state.goodslist.cate = data
@@ -67,7 +87,10 @@ const mutations = {
   },
   [types.CHANGE_GOODS_ID](state, id) {
     state.goodsinfo.goods_id = id
-  }
+  },
+  [types.CHANGE_GOODS_VIEW](state, num) {
+    state.goodsinfo.goods.goods_view += num
+  },
 }
 
 export default {

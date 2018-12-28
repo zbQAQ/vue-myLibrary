@@ -120,6 +120,7 @@
   display: flex;
   flex-wrap: wrap;
   /* justify-content: space-between; */
+  justify-content: center;
   width: 100%;
   padding-left: 25px;
 }
@@ -148,11 +149,6 @@
   }
   
 }
-@media (max-width: 1333px) {
-  .main .content .goodsbox .goods{
-    justify-content: center;
-  }
-}
 @media (max-width: 750px) {
   .main .content {
     width: 95%;
@@ -163,6 +159,6 @@
 }
 @media (max-width: 400px) {
   .main .content .catebox ul li{
-    width: 38px;
+    width: 35px;
   }
 }

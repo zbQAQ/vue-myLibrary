@@ -12,7 +12,7 @@
   >
   <div class="goods-card">
     <router-link :to="'/goods/goods/' + goods.goods_id" class="imgbox">
-      <img :src="'http://localhost/laravel-blog/' + goods.goods_thumb " alt="">
+      <img :src="goods.goods_thumb" alt="">
     </router-link>
     <div class="row row-1">
       <div class="g-price"><i class="fa fa-cny"></i>{{goods.goods_price}}</div>

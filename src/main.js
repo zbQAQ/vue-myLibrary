@@ -32,7 +32,7 @@ Vue.component('loading', loading)
 Vue.component('headnav', headnav)
 Vue.component('goback', goback)
 
-new Vue({
+var vm = new Vue({
   el: '#app',
   router,
   store,

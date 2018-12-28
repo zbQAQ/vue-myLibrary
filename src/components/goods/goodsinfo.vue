@@ -12,7 +12,7 @@
       <div class="pro-box" v-if="!isLoading">
 
         <div class="g-img">
-          <img :src="'http://localhost/laravel-blog/' + goods.goods_thumb" alt="">
+          <img :src="goods.goods_thumb" alt="">
         </div>
         <div class="g-info">
 
@@ -26,13 +26,12 @@
           </div>
 
           <div class="g-sign">
-            <div class="g-cate">{{goods.gcate_name}}</div>
-            <div class="g-time">{{goods.goods_time | datefmt}}</div>
+            <div class="g-cate">{{goods.goods_cate_name}}</div>
+            <div class="g-time">{{goods.goods_time}}</div>
           </div>
 
           <div class="g-catedesc">
-            <span>更多分类 >> </span>
-            <span class="g-toCate" @click="CateToGoodslist(goods.gcate_name)">{{goods.gcate_title}}</span>
+            <span @click="CateToGoodslist()">更多分类 >> </span>
           </div>
 
           <div class="ghr">分割线</div> 
@@ -68,8 +67,12 @@
 
     <div class="content pro-content" v-if="!isLoading">
 
-      <img v-for="(item, index) in goods.goods_content" :key="index" :src="'http://localhost/laravel-blog/' + item" alt="">
-      <p class="tips">自用练习 取自<a href="http://www.taobao.com">淘宝</a></p>
+      <h1 class="title">商品详情</h1>
+
+      <img v-for="(item, index) in goods.goods_content" :key="index" :src="item" alt="">
+      <!-- <p class="tips">自用练习 取自<a href="http://www.taobao.com">淘宝</a></p> -->
+
+
 
     </div>
 
@@ -90,7 +93,10 @@ export default {
   },
   async created() {
     this.getGoods_id(this.$route.params.goods_id)
-    await this.getGoods(this.goods_id)
+    await this.getGoods({
+      id: this.goods_id,
+      $router: this.$router
+    })
     this.isLoading = false
   },
   methods: {
@@ -100,8 +106,8 @@ export default {
     ...mapMutations({
       getGoods_id: 'CHANGE_GOODS_ID',
     }),
-    CateToGoodslist(cate) {
-      this.$router.push({path:'/goods/goodslist', query: {cate: cate}})
+    CateToGoodslist() {
+      this.$router.push({path:'/goods/goodslist'})
     },
   },
   computed: {
@@ -109,7 +115,7 @@ export default {
       'goods',
       'goods_id'
     ])
-  }
+  },
 }
 </script>
 

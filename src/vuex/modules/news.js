@@ -24,7 +24,14 @@ const getters = {
 const actions = {
   //获取新闻列表
   async getNewslist ({ commit }) {
-    const data = await mock.getNewslist()
+
+    let data
+    if(state.newstlist.length > 0){
+      //判断 商品列是否有值 有就返回没有就请求数据
+      data = state.newstlist
+    }else{
+      data = await mock.getNewslist()
+    }
     commit(types.GET_NEWSLIST, data)
   },
   //获取单个新闻

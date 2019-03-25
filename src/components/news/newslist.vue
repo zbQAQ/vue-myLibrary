@@ -11,15 +11,15 @@
 
       <loading v-if="isLoading"></loading> 
       <div class="newsUl" v-if="!isLoading">
-        <div class="newli" v-for="(item, index) in newstlist" :key="index">
+        <div class="newli" v-for="(item, index) in newstlist" :key="index" @click="goNewsDetail(item.id)">
           <div class="thumb">
-            <router-link :to="'/news/news/' + item.art_id"><img :src="item.art_thumb " alt=""> </router-link> 
+            <a href="javascript:;"><img src="static/img/thumb220x.png" alt=""> </a> 
           </div>
           <div class="info">
 
-            <div class="title"> <router-link :to="'/news/news/' + item.art_id" v-html="item.art_title"></router-link> </div>
+            <div class="title"> <a href="javascript:;" v-html="item.title"></a> </div>
             <div class="desc">
-              <router-link :to="'/news/news/' + item.art_id" v-html="item.art_description"></router-link>
+              <a href="javascript:;" v-html="item.desc"></a>
            </div>
 
             <div class="otherbox">
@@ -27,19 +27,13 @@
               <div class="editer">
                 <i class="fa fa-pencil"></i>
                 <span class="nkey">作者 : </span>
-                <span class="nvalue">{{item.art_editor}}</span>
+                <span class="nvalue">{{item.editor}}</span>
               </div>
 
               <div class="otime">
                 <i class="fa fa-eye"></i>
                 <span class="nkey">发布时间 : </span>
-                <span class="nvalue">{{item.art_time | datefmt}}</span>
-              </div>
-
-              <div class="views">
-                <i class="fa fa-clock-o"></i>
-                <span class="nkey">点击数 : </span>
-                <span class="nvalue">{{item.art_view}}</span>
+                <span class="nvalue">{{item.time_formatting}}</span>
               </div>
 
             </div>
@@ -72,7 +66,10 @@ export default {
   methods: {
     ...mapActions([
       'getNewslist',
-    ])
+    ]),
+    goNewsDetail(id) {
+      this.$router.push({path:'/news/newsDetail', query: {newsId: id}})
+    }
   },
   computed: {
     ...mapGetters([

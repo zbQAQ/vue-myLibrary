@@ -20,12 +20,12 @@
           </ul>
         </div>
 
-        <div class="searchbox">
+        <!-- <div class="searchbox">
           <div class="search">
             <input type="text" class="search-input" placeholder="输入查找的商品名字" v-model="filter_name" @keyup.enter="doNameFill">
             <a href="javascript:;" @click="doNameFill"><i class="fa fa-search"></i></a>
           </div>
-        </div>
+        </div> -->
 
         <div class="goodsbox">
           <loading v-if="isLoading"></loading>
@@ -66,9 +66,6 @@ export default {
       msg: 'goodslist',
       isLoading: true,
       isGoods_null: false,
-      testData: {
-        a:1
-      }
     }
   },
   async created() {
@@ -83,42 +80,23 @@ export default {
     }),
     ...mapMutations({
       change_filter_cate: 'CHANGE_FILTER_CATE',
-      change_filter_name: 'CHANGE_FILTER_NAME',
       change_goodslist: 'GET_GOODSLIST',
     }),
-    strToArray(text) {
-      return Array.prototype.slice.call(text);
-    },
-    async doCateFill(cate) {
+    doCateFill(cate) {
       this.isLoading = true
-      // this.filter_cate = cate
-      const list = await this.list
-      const filter = list.filter( (val) => {
-        if(this.filter_cate === '全部') {
+      const filter = this.list.filter( (item) => {
+        if(cate === '全部') {
           return true
         }
-        return val.goods_cate_name === this.filter_cate
+        return item.cate === cate
       })
+      this.isGoods_null = filter.length === 0 ? true : false
       this.change_goodslist(filter)
-      this.change_filter_name('')
-      this.isLoading = false
-    },
-    async doNameFill() {
-      this.isLoading = true
-      const fname = this.strToArray(this.filter_name.replace(/^\s*|\s*$/g,""))
-      // const list = await this.getGoodslist()
-      if(fname.length <= 0) {
-        alert('请输入有效字段')
+      // debugger
+      setTimeout(() => {
         this.isLoading = false
-        return;
-      }
-      const filter = this.goodslist.filter( (val) => {
-        for(let v of fname) {
-          return val.goods_name.includes(v)
-        }
-      })
-      this.change_goodslist(filter)
-      this.isLoading = false
+      }, 0)
+      console.log('我执行了一次doCateFill')
     },
   },
   components: {
@@ -130,28 +108,15 @@ export default {
       'goodslist',
       'goodscate',
       'filter_cate',
-      'filter_name',
     ]),
-    filter_name: {
-      get() {
-        return this.$store.state.goods.goodslist.filter_name
-      },
-      set(value) {
-        this.change_filter_name(value)
-      }
-    }
   },
   watch: {
-    filter_cate(newval, oldval) {
-      // console.log(newval, oldval)
-      this.doCateFill(newval)
-    },
-    goodslist(newval, oldval) {
-      if(newval.length < 1) {
-        this.isGoods_null = true
-      }else{
-        this.isGoods_null = false
-      }
+    filter_cate: {
+      handler(newval, oldval) {
+        console.log(newval, oldval , 'watch filter_cate')
+        this.doCateFill(newval)
+      },
+      // immediate: true
     }
   },
   beforeRouteUpdate (to, from, next) {

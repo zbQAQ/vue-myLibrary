@@ -12,7 +12,6 @@ const state = {
     cate: [],
     filter_list:[], //过滤后的list
     filter_cate: '全部',
-    filter_name: '',
   },
   goodsinfo: {
     goods_id: 0,
@@ -26,7 +25,6 @@ const getters = {
   goodslist: state => state.goodslist.filter_list,
   goodscate: state => state.goodslist.cate,
   filter_cate: state => state.goodslist.filter_cate,
-  filter_name: state => state.goodslist.filter_name,
   goods_id: state => state.goodsinfo.goods_id,
   goods: state => state.goodsinfo.goods,
 }
@@ -34,18 +32,14 @@ const getters = {
 // actions
 const actions = {
   async getGoodslist({ commit, state }) {
-    let data
-    if(state.goodslist.list.length > 0){
-      //判断 商品列是否有值 有就返回没有就请求数据
-      data = state.goodslist.list
-    }else{
-      data = await mock.getGoodslist()
-      commit(types.CHANGE_LIST, data)
+    let data = await posts.getGoodslist()
+    commit(types.CHANGE_LIST, data) //获取 最新 商品列
+    if(!(state.goodslist.filter_list.length > 0)) {
+      commit(types.GET_GOODSLIST, data) //把 最新的商品列 同步给 过滤后的list
     }
-    commit(types.GET_GOODSLIST, data)
   },
   async getGoodscate({ commit }) {
-    const data = await mock.getGoodscate()
+    const data = await posts.getGoodscate()
     commit(types.GET_GOODS_CATE, data)
   },
   async getGoods({commit}, paramData) {
@@ -78,9 +72,6 @@ const mutations = {
   },
   [types.CHANGE_FILTER_CATE](state, val) {
     state.goodslist.filter_cate = val
-  },
-  [types.CHANGE_FILTER_NAME](state, val) {
-    state.goodslist.filter_name = val
   },
   [types.GET_ONE_GOODS](state, data) {
     state.goodsinfo.goods = data

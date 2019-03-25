@@ -8,24 +8,23 @@
     name="goodsCard"
     mode="out-in"
     enter-active-class="animated fadeIn"
-    leave-active-class="animated fadeOut"
   >
   <div class="goods-card">
-    <router-link :to="'/goods/goods/' + goods.goods_id" class="imgbox">
-      <img :src="goods.goods_thumb" alt="">
+    <router-link :to="'/goods/goods/' + goods.id" class="imgbox">
+      <img :src="'http://applinkupload.oss-cn-shenzhen.aliyuncs.com/alucard263096/blog/goods/' + goods.thumb" alt="">
     </router-link>
     <div class="row row-1">
-      <div class="g-price"><i class="fa fa-cny"></i>{{goods.goods_price}}</div>
-      <div class="g-cate"><span class="span-type">{{goods.goods_cate_name}}</span></div>
+      <div class="g-price"><i class="fa fa-cny"></i>{{goods.price}}</div>
+      <div class="g-cate"><span class="span-type">{{goods.cate}}</span></div>
     </div>
     <div class="row row-2">
-      <router-link :to="'/goods/goods/' + goods.goods_id" class="g-name">{{goods.goods_name}}</router-link>
+      <router-link :to="'/goods/goods/' + goods.goods_id" class="g-name">{{goods.name}}</router-link>
     </div>
     <div class="row row-3">
       <div class="g-stock">
-        <span>库存:</span> {{goods.goods_stock}}
+        <span>库存:</span> {{goods.stock}}
       </div>
-      <div class="g-time">{{goods.goods_time}}</div>
+      <div class="g-time">{{goods.created_date}}</div>
     </div>
   </div>
   </transition>

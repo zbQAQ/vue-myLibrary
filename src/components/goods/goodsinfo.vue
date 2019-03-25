@@ -93,6 +93,7 @@ export default {
   },
   async created() {
     this.getGoods_id(this.$route.params.goods_id)
+    console.log(this.$route)
     await this.getGoods({
       id: this.goods_id,
       $router: this.$router

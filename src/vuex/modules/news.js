@@ -9,7 +9,7 @@ import mock from '@/request/requests_mock'
 const state = {
   newstlist: [],
   newsinfo: {
-    news: [],
+    news: {},
     newsId: 0,
   },
 }
@@ -24,32 +24,36 @@ const getters = {
 const actions = {
   //获取新闻列表
   async getNewslist ({ commit }) {
-
-    let data
-    if(state.newstlist.length > 0){
-      //判断 商品列是否有值 有就返回没有就请求数据
-      data = state.newstlist
-    }else{
-      data = await mock.getNewslist()
-    }
+    let data = await posts.getNewslist()
     commit(types.GET_NEWSLIST, data)
   },
   //获取单个新闻
   //这里使用mock newslist的新闻 不发起新的请求 
   //从而得到 newslist 获取id 和新闻详情对应 的效果
-  getNews ({ commit, state }, paramData) {
+  async getNews ({ commit }, paramData) {
 
     let id = paramData.id
     let $router = paramData.$router
-
-    if(state.newstlist !== null && state.newstlist.length > 0) {
-      const data = state.newstlist[id - 1]
+    if(id !== null) {
+      const data = await posts.getNews(id)
+      var s = "";
+      if (data.content.length == 0) return "";
+      s = data.content.replace(/&amp;/g, "&");
+      s = s.replace(/&lt;/g, "<");
+      s = s.replace(/&gt;/g, ">");
+      s = s.replace(/&nbsp;/g, " ");
+      s = s.replace(/&#39;/g, "'");
+      s = s.replace(/&quot;/g, '"');
+      s = s.replace(new RegExp("</p >", "gm"), "</p ><br />");
+      s = s.replace(
+        new RegExp('"/alucard263096/ariesmall/upload/', "gm"),
+        '"' + "https://cmsdev.app-link.org/alucard263096/ariesmall/upload/"
+      );
+      data.content = s
       commit(types.GET_ONE_NEWS, data)
-      commit(types.CHANGE_NEWS_VIEW, 1) //触发修改阅读数事件
     }else{
       $router.push('/news/newslist')
     }
-    
   },
   
 

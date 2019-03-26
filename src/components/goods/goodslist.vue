@@ -50,8 +50,15 @@
       </div>
     </div>
 
-                <!-- <h1>{{testData.a}}</h1>
-            <button @click="testData()" style="margin-bottom: 50px;">click me</button> -->
+    <div class="shopCartBox">
+      <div class="shopCart">
+        <router-link to="/goods/cart" alt="返回商品列表">
+          <!-- <span>返回商品列表</span> -->
+          <i class="fa fa-shopping-cart"></i>
+        </router-link>
+      </div>
+    </div>
+
 
   </div>
 </template>
@@ -131,5 +138,35 @@ export default {
 </script>
 
 <style scoped>
-  @import "./goodslist.css";
+@import "./goodslist.css";
+.shopCartBox{
+  position: absolute;
+  right: 3%;
+  bottom: 150px;
+  z-index: 999;
+}
+.shopCartBox .shopCart{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #fff;
+  overflow: hidden;
+  box-shadow: 1px 1px 10px -1px #999;
+}
+.shopCartBox .shopCart a{
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  line-height: 38px;
+  font-size: 16px;
+  text-align: center;
+  /* margin-left: -1px; */
+  color: #666;
+  transition: 0.2s ease-in;
+}
+.shopCartBox .shopCart a:hover {
+  color: #fff;
+  background: #64abe9;
+}
 </style>

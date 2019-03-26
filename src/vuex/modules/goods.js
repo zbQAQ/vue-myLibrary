@@ -43,18 +43,14 @@ const actions = {
     commit(types.GET_GOODS_CATE, data)
   },
   async getGoods({commit}, paramData) {
-
     let id = paramData.id
     let $router = paramData.$router
-    let list = state.goodslist.list
-    if(list !== null && list.length > 0) {
-
-      const data = list.filter(v => v.goods_id == id)[0]
-      console.log('getGoods mockdata:', data)
+    if(id == null) {
+      $router.push({path: 'goods/goodslist'})
+    }else {
+      const data = await posts.getGoods(id)
+      commit(types.CHANGE_GOODS_ID, id)
       commit(types.GET_ONE_GOODS, data)
-      commit(types.CHANGE_GOODS_VIEW, 1) //触发修改阅读数事件
-    }else{
-      $router.push('/goods/goodslist')
     }
   }
 }

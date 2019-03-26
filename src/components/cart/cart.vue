@@ -1,9 +1,12 @@
 <template>
   <div class="main">
     
+    <div class="headimg">
+      <img src="../../../static/img/cartBg.png" alt="">
+    </div>
     <div class="shopbox">
 
-      
+      <h1>{{msg}}</h1>
 
     </div>
 
@@ -25,5 +28,5 @@ export default {
 </script>
 
 <style>
-  @import './cart.css';
+@import './cart.css';
 </style>

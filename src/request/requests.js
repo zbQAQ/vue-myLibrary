@@ -70,13 +70,12 @@ export default class requests {
   }
   static async getGoods(id) { //获取单个商品
     try {
-      const res = await axios.get('api/getGoods/' + id)
-      if(res.data.status === 1 && res.data.msg === 'success') {
+      const res = await axios.get(url + 'goods/goodsdetail?id=' + id)
+      if(res.status === 200 && res.statusText === 'OK') {
         // 返回的商品内容需要处理
         console.log('getGoods data:', res)
-        res.data.data.goods_content = res.data.data.goods_content.split('|')
-        // console.log(res.data.data)
-        return res.data.data
+        res.data.content = this.HtmlDecode(res.data.content)
+        return res.data
       }
       return null
     } catch (e) {
@@ -103,5 +102,21 @@ export default class requests {
       return null
     }
   }
+  static HtmlDecode(str) { //字符串转义 
+    var s = "";
+    if (str.length == 0) return "";
+    s = str.replace(/&amp;/g, "&");
+    s = s.replace(/&lt;/g, "<");
+    s = s.replace(/&gt;/g, ">");
+    s = s.replace(/&nbsp;/g, " ");
+    s = s.replace(/&#39;/g, "\'");
+    s = s.replace(/&quot;/g, "\""); 
   
+  
+    s = s.replace(new RegExp("</p >", "gm"), "</p ><br />");
+    s = s.replace(new RegExp("\"/alucard263096/ariesmall/upload/", "gm"), "\"" + "https://cmsdev.app-link.org/alucard263096/ariesmall/upload/");
+  
+  
+    return s;
+  }
 }

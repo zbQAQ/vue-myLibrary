@@ -59,7 +59,7 @@ export default new Router({
       component: Login
     },
     {
-      path: '/cart',
+      path: '/goods/cart',
       name: 'cart',
       component: Cart
     }

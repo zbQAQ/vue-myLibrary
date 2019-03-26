@@ -12,26 +12,26 @@
       <div class="pro-box" v-if="!isLoading">
 
         <div class="g-img">
-          <img :src="goods.goods_thumb" alt="">
+          <img :src="'http://applinkupload.oss-cn-shenzhen.aliyuncs.com/alucard263096/blog/goods/' + goods.thumb" alt="">
         </div>
         <div class="g-info">
 
-          <div class="g-name">{{goods.goods_name}}</div>
-          <div class="g-title">{{goods.goods_description}}</div>
+          <div class="g-name">{{goods.name}}</div>
+          <div class="g-title">{{goods.desc}}</div>
 
           <div class="g-price">
             <span class="g-key">现 价:</span>
             <i class="fa fa-cny"></i>
-            <span class="price">{{goods.goods_price}}</span>
+            <span class="price">{{goods.price}}</span>
           </div>
 
           <div class="g-sign">
-            <div class="g-cate">{{goods.goods_cate_name}}</div>
-            <div class="g-time">{{goods.goods_time}}</div>
+            <div class="g-cate">{{goods.cate}}</div>
+            <div class="g-time">{{goods.created_date}}</div>
           </div>
 
           <div class="g-catedesc">
-            <span @click="CateToGoodslist()">更多分类 >> </span>
+            <span @click="CateToGoodslist()">{{goods.cateDesc}}</span>
           </div>
 
           <div class="ghr">分割线</div> 
@@ -47,7 +47,7 @@
                 <i class="fa fa-minus"></i>
               </a>
             </div>
-            <span class="g-stock">库存：{{goods.goods_stock}}</span>
+            <span class="g-stock">库存：{{goods.stock}}</span>
           </div>
 
           <div class="g-action">
@@ -65,17 +65,22 @@
 
     </div>
 
-    <div class="content pro-content" v-if="!isLoading">
-
+    <div class="content pro-content" v-if="!isLoading" >
       <h1 class="title">商品详情</h1>
-
-      <img v-for="(item, index) in goods.goods_content" :key="index" :src="item" alt="">
-      <!-- <p class="tips">自用练习 取自<a href="http://www.taobao.com">淘宝</a></p> -->
-
-
-
+      <div v-html="goods.content"></div>
+      <div class="copyTips">
+        内容均取自淘宝, 无商业用途
+      </div>
     </div>
 
+    <div class="shopCartBox">
+      <div class="shopCart">
+        <router-link to="/goods/cart" alt="返回商品列表">
+          <!-- <span>返回商品列表</span> -->
+          <i class="fa fa-shopping-cart"></i>
+        </router-link>
+      </div>
+    </div>
     <goback path="/goods/goodslist">返回商品列表</goback>
 
   </div>
@@ -93,7 +98,6 @@ export default {
   },
   async created() {
     this.getGoods_id(this.$route.params.goods_id)
-    console.log(this.$route)
     await this.getGoods({
       id: this.goods_id,
       $router: this.$router
@@ -121,5 +125,35 @@ export default {
 </script>
 
 <style scoped>
-  @import "./goodsinfo.css";
+@import "./goodsinfo.css";
+.shopCartBox{
+  position: absolute;
+  right: 3%;
+  bottom: 150px;
+  z-index: 999;
+}
+.shopCartBox .shopCart{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #fff;
+  overflow: hidden;
+  box-shadow: 1px 1px 10px -1px #999;
+}
+.shopCartBox .shopCart a{
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  line-height: 38px;
+  font-size: 16px;
+  text-align: center;
+  /* margin-left: -1px; */
+  color: #666;
+  transition: 0.2s ease-in;
+}
+.shopCartBox .shopCart a:hover {
+  color: #fff;
+  background: #64abe9;
+}
 </style>

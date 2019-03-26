@@ -81,6 +81,7 @@
 }
 .main .content .pro-box .g-info .g-title{
   margin-bottom: 8px;
+  color: #ff4949;
 }
 .main .content .pro-box .g-info .g-price,
 .main .content .pro-box .g-info .g-sign,
@@ -241,7 +242,7 @@
   box-sizing: border-box;
   margin-top: 30px;
   min-height: 100px;
-  padding: 20px 30px 8px 30px;
+  padding: 20px 30px;
   /* padding-bottom: 30px; */
   text-align: center;
 }
@@ -270,6 +271,10 @@
 }
 .main .content.pro-content .tips a:hover{
   color: #666;
+}
+.main .content .copyTips {
+  margin-top: 20px;
+  color: #cacaca;
 }
 
 @media (max-width: 1630px) {

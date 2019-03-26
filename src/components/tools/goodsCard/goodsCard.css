@@ -99,3 +99,17 @@
 .goods-card .row.row-3 .g-time{
   float: right;
 }
+
+@media (max-width: 495px) {
+  .goods-card{
+    width: 100%;
+    height: auto;
+  }
+  .goods-card .imgbox {
+    width: 100%;
+    height: auto;
+  }
+  .goods-card .row {
+    width: 100%;
+  }
+}

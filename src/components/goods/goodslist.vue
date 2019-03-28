@@ -65,7 +65,7 @@
 
 <script>
 import goodsCard from '@/components/tools/goodsCard/goodsCard'
-import { mapGetters, mapActions, mapMutations, mapState } from 'vuex'
+import { mapGetters, mapActions, mapMutations } from 'vuex'
 export default {
   name: 'goodslist',
   data(){
@@ -103,7 +103,6 @@ export default {
       setTimeout(() => {
         this.isLoading = false
       }, 0)
-      console.log('我执行了一次doCateFill')
     },
   },
   components: {
@@ -120,7 +119,7 @@ export default {
   watch: {
     filter_cate: {
       handler(newval, oldval) {
-        console.log(newval, oldval , 'watch filter_cate')
+        // console.log(newval, oldval , 'watch filter_cate')
         this.doCateFill(newval)
       },
       // immediate: true

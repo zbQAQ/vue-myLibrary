@@ -14,8 +14,8 @@ const state = {
     filter_cate: '全部',
   },
   goodsinfo: {
-    goods_id: 0,
     goods: [],
+    quantity: 1 //当前商品详情的 选择量
   }
   
 }
@@ -25,8 +25,8 @@ const getters = {
   goodslist: state => state.goodslist.filter_list,
   goodscate: state => state.goodslist.cate,
   filter_cate: state => state.goodslist.filter_cate,
-  goods_id: state => state.goodsinfo.goods_id,
   goods: state => state.goodsinfo.goods,
+  quantity: state => state.goodsinfo.quantity,
 }
 
 // actions
@@ -34,9 +34,9 @@ const actions = {
   async getGoodslist({ commit, state }) {
     let data = await posts.getGoodslist()
     commit(types.CHANGE_LIST, data) //获取 最新 商品列
-    if(!(state.goodslist.filter_list.length > 0)) {
+    // if(!(state.goodslist.filter_list.length > 0)) {
       commit(types.GET_GOODSLIST, data) //把 最新的商品列 同步给 过滤后的list
-    }
+    // }
   },
   async getGoodscate({ commit }) {
     const data = await posts.getGoodscate()
@@ -49,9 +49,14 @@ const actions = {
       $router.push({path: 'goods/goodslist'})
     }else {
       const data = await posts.getGoods(id)
-      commit(types.CHANGE_GOODS_ID, id)
       commit(types.GET_ONE_GOODS, data)
     }
+  },
+  async doPurchase({commit}, paramData) {
+    let id = parseInt(paramData.id)
+    let num = parseInt(paramData.num)
+    const data = await posts.doPurchase(id, num)
+    if(data) {alert('购买成功')}
   }
 }
 
@@ -72,11 +77,27 @@ const mutations = {
   [types.GET_ONE_GOODS](state, data) {
     state.goodsinfo.goods = data
   },
-  [types.CHANGE_GOODS_ID](state, id) {
-    state.goodsinfo.goods_id = id
-  },
   [types.CHANGE_GOODS_VIEW](state, num) {
     state.goodsinfo.goods.goods_view += num
+  },
+  [types.ADD_QUANTITY](state) {
+
+    if( state.goodsinfo.quantity + 1 <= state.goodsinfo.goods.stock ) {
+      state.goodsinfo.quantity++
+    }else {
+      alert('不能超出库存')
+    }
+  },
+  [types.REDUCE_QUANTITY](state) {
+    // state.goodsinfo.quantity--
+    if( state.goodsinfo.quantity - 1 > 0 ) {
+      state.goodsinfo.quantity--
+    }else {
+      alert('最少为1哦')
+    }
+  },
+  [types.CHANGE_QUANTITY](state, num) {
+    state.goodsinfo.quantity = parseInt(num)
   },
 }
 

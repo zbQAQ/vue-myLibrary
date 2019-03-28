@@ -16,7 +16,7 @@ export default class requests {
     try {
       const res = await axios.get(url + 'news/newslist')
       if(res.status === 200 && res.statusText === 'OK') {
-        console.log('getNewslist data:', res.data)
+        // console.log('getNewslist data:', res.data)
         return res.data
       }
       return null
@@ -73,7 +73,7 @@ export default class requests {
       const res = await axios.get(url + 'goods/goodsdetail?id=' + id)
       if(res.status === 200 && res.statusText === 'OK') {
         // 返回的商品内容需要处理
-        console.log('getGoods data:', res)
+        // console.log('getGoods data:', res)
         res.data.content = this.HtmlDecode(res.data.content)
         return res.data
       }
@@ -83,18 +83,11 @@ export default class requests {
       return null
     }
   }
-  static async login(payload) { //登录 返回登录结果信息
+  static async doPurchase(id, num) {
     try {
-      const res = await axios.post('api/login', {
-        user_name: payload.user_name,
-        user_pass: payload.user_pass,
-        user_type: payload.user_type,
-      })
-      if(res.data.status === 1 && res.data.msg === 'success') {
-        // 返回的商品内容需要处理
-        res.data.data.goods_content = res.data.data.goods_content.split('|')
-        // console.log(res.data.data)
-        return res.data.data
+      const res = await axios.get(url + 'goods/goodsbuy?id=' + id + '&num=' + num)
+      if(res.status === 200 && res.statusText === 'OK') {
+        return res.data
       }
       return null
     } catch (e) {

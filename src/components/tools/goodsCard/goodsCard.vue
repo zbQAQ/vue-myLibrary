@@ -18,7 +18,7 @@
       <div class="g-cate"><span class="span-type">{{goods.cate}}</span></div>
     </div>
     <div class="row row-2">
-      <router-link :to="'/goods/goods/' + goods.goods_id" class="g-name">{{goods.name}}</router-link>
+      <router-link :to="'/goods/goods/' + goods.id" class="g-name">{{goods.name}}</router-link>
     </div>
     <div class="row row-3">
       <div class="g-stock">

@@ -41,7 +41,7 @@ export default {
   height: 100%;
 }
 .footer {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   width: 100%;
   height: 30px;

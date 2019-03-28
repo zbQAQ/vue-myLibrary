@@ -1,8 +1,14 @@
+.main {
+  min-width: 100%;
+  min-height: 100%;
+  overflow: hidden;
+  background: #e2e2e2;
+}
 .main .headimg {
   width: 100%;
   height: 450px;
   overflow: hidden;
-  box-shadow: 0px 0px 20px 3px #999;
+  box-shadow: 0px 2px 12px #a0a0a0;
   z-index: 1;
 }
 .main .headimg img{
@@ -11,8 +17,198 @@
   min-height: 160px;
 }
 
+.shopbox {
+  box-sizing: border-box;
+  position: relative;
+  top: -30px;
+  margin: 0 auto; 
+  width: 95%;
+  background-color: #fff;
+  border: 20px solid #fff;
+  transition: 0.2s ease;
+}
+
+.shopbox .shopItem {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 15px;
+  padding-left: 5px;
+}
+.shopbox .shopItem .check {
+  margin-right: 5px;
+}
+.shopbox .shopItem .check input {
+  height: 100%;
+  margin-top: -2px;
+  margin-bottom: 1px;
+  vertical-align: middle;
+}
+.shopbox .shopItem .shopInfo {
+  display: flex;
+  padding: 10px 5px;
+  border-radius: 2px;
+  box-shadow: 0px 0px 5px #dedede;
+  padding-bottom: 8px;
+}
+.shopbox .shopItem .shopInfo .thumb{
+  max-width: 90px;
+  margin-right: 5px;
+  border-radius: 2px;
+}
+.shopbox .shopItem .shopInfo .thumb img {
+  width: 100%;
+  height: 100%;
+}
+.shopbox .shopItem .shopInfo .shopText {
+  position: relative;
+  width: 75%;
+}
+.shopbox .shopItem .shopInfo .shopText .name {
+  line-height: 15px;
+  max-height: 30px;
+  overflow: hidden;
+}
+.shopbox .shopItem .shopInfo .shopText .stock {
+  color: #888;
+  margin-top: 5px;
+}
+.shopbox .shopItem .shopInfo .shopText .price {
+  position: absolute;
+  bottom: 0;
+  color: #f10215;
+}
+.shopbox .shopItem .shopInfo .shopText .price span {
+  font-size: 16px;
+  font-weight: bold;
+}
+.shopbox .shopItem .shopInfo .shopText .quantity {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: row;
+  height: 22px;
+  line-height: 22px;
+  text-align: center;
+}
+.shopbox .shopItem .shopInfo .shopText .quantity a {
+  padding: 0 8px;
+  font-weight: 700px;
+}
+.shopbox .shopItem .shopInfo .shopText .quantity .add {}
+.shopbox .shopItem .shopInfo .shopText .quantity .reduce {}
+.shopbox .shopItem .shopInfo .shopText .quantity .tityNum {
+  width: 35px;
+  background-color: #dadada;
+  border: none;
+  text-align: center;
+  font-weight: bold;
+}
+.shopbox .noSelected {
+  text-align: center;
+  padding: 25px 0;
+}
+.shopbox .noSelected p {
+  font-size: 14px;
+}
+
+.buyOption {
+  display: flex;
+  min-height: 50px;
+  line-height: 50px;
+  color: #666;
+  padding-left: 5px;
+  border: 1px solid #f1f1f1;
+  margin-top: 30px;
+}
+.buyOption .check {
+  flex: 1;
+}
+.buyOption .check input {
+  height: 100%;
+  margin-top: -2px;
+  margin-bottom: 1px;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+.buyOption .check .allCheck,
+.buyOption .check .delShop {
+  margin-right: 10px;
+}
+.buyOption .optionRigh {
+  display: flex;
+}
+.buyOption .optionRigh .price {
+  color: #f10215;
+  font-size: 20px;
+  line-height: 46px;
+  margin-right: 30px;
+}
+.buyOption .optionRigh .doBtn {
+  padding: 0 20px;
+  margin-left: auto;
+  background-color: #f10215;
+  color: #fff;
+}
+
 @media (max-width: 1630px) {
   .main .headimg {
     height: auto;
+  }
+}
+@media (min-width: 562px) {
+  .shopbox .shopItem .shopInfo {
+    width: 100%;
+  }
+  .shopbox .shopItem .shopInfo .shopText {
+    width: 100%;
+  }
+  
+}
+@media (max-width: 400px) {
+  .buyOption {
+    flex-direction: column;
+  }
+  .buyOption .check input {
+    height: 50px;
+  }
+}
+@media (min-width: 992px) {
+  .shopbox {
+    top: -70px;
+    width: 70%;
+  }
+  .shopbox .shopItem .shopInfo .thumb {
+    max-width: 120px;
+  }
+  .shopbox .shopItem .shopInfo .shopText {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: baseline;
+  }
+  .shopbox .shopItem .shopInfo .shopText .name {
+    flex: 2;
+  }
+  .shopbox .shopItem .shopInfo .shopText .stock {
+    padding-left: 15px;
+    text-align: center;
+    margin-top: 0;
+  }
+  .shopbox .shopItem .shopInfo .shopText .price {
+    position: static;
+    flex: 1;
+    text-align: center;
+  }
+  .shopbox .shopItem .shopInfo .shopText .quantity {
+    position: static;
+    padding-right: 25px;
+  }
+}
+@media (min-width: 1200px) {
+  .shopbox {
+    top: -120px;
+    width: 50%;
+    border: 50px solid #fff;
   }
 }

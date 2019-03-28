@@ -39,11 +39,11 @@
           <div class="g-select">
             <span class="g-key">数 量:</span>
             <div class="g-buynum">
-              <a href="javascript:;" class="buy-add">
+              <a href="javascript:;" class="buy-add" @click="addQuantity">
                 <i class="fa fa-plus"></i>
               </a>
-              <input type="text" class="buy-number" value="1">
-              <a href="javascript:;" class="buy-reduce">
+              <input type="text" class="buy-number" :value="quantity" @change="quantityInput">
+              <a href="javascript:;" class="buy-reduce" @click="reduceQuantity">
                 <i class="fa fa-minus"></i>
               </a>
             </div>
@@ -51,10 +51,10 @@
           </div>
 
           <div class="g-action">
-            <a href="javascript:;" class="btn-buy">
+            <a href="javascript:;" class="btn-buy" @click="purchase">
               立即购买
             </a>
-            <a href="javascript:;" class="btn-addToCart">
+            <a href="javascript:;" class="btn-addToCart" @click="addToCart">
               <i class="fa fa-shopping-cart"></i>加入购物车
             </a>
           </div>
@@ -94,31 +94,82 @@ export default {
     return {
       msg: 'goodsInfo',
       isLoading: true,
+      id: 0
     }
   },
   async created() {
-    this.getGoods_id(this.$route.params.goods_id)
+    this.id = this.$route.params.goods_id
     await this.getGoods({
-      id: this.goods_id,
+      id: this.id,
       $router: this.$router
     })
+    this.changesQuantity(1)
     this.isLoading = false
   },
   methods: {
     ...mapActions([
-      'getGoods'
+      'getGoods',
+      'doPurchase'
     ]),
     ...mapMutations({
-      getGoods_id: 'CHANGE_GOODS_ID',
+      addQuantity: 'ADD_QUANTITY',
+      reduceQuantity: 'REDUCE_QUANTITY',
+      changesQuantity: 'CHANGE_QUANTITY'
     }),
     CateToGoodslist() {
       this.$router.push({path:'/goods/goodslist'})
     },
+    quantityInput(e) {
+      // debugger
+      let goods = this.goods
+      let num = parseInt(e.target.value)
+      if(parseInt(num) > 0) {
+        if(num > goods.stock) {
+          e.target.value = this.quantity
+          alert('不能超过库存哦')
+        }else {
+          this.changesQuantity(num)
+        }
+      }else {
+        e.target.value = this.quantity
+        alert('你输入的值不合法')
+      }
+    },
+    purchase() {
+      let num = this.quantity
+      let id = this.id
+      var r = confirm('你确定要购买' + num + '件此商品吗？（模拟购买，只会减少库存数）')
+      if(r == true) {
+        this.doPurchase({id: id, num: num,})
+        this.$router.push({path: '/goods/goodslist'})
+      }
+    },
+    addToCart() {
+      let goods = this.goods
+      let shopCart = JSON.parse(sessionStorage.getItem('shopCart') || '[]')
+      let isInShopCart = shopCart.find(v => v.id == goods.id)
+      if( isInShopCart === undefined) {
+        let onceGoods = {
+          id: goods.id,
+          name: goods.name,
+          stock: goods.stock,
+          price: parseInt(goods.price).toFixed(2),
+          quantity: this.quantity,
+          thumb: goods.thumb,
+          isChecked: false,
+        }
+        shopCart.push(onceGoods)
+      }else {
+        isInShopCart.quantity += this.quantity
+      }
+      sessionStorage.setItem('shopCart', JSON.stringify(shopCart))
+      
+    }
   },
   computed: {
     ...mapGetters([
       'goods',
-      'goods_id'
+      'quantity'
     ])
   },
 }

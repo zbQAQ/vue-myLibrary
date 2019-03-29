@@ -1,6 +1,6 @@
 
 .goback-box{
-  position: absolute;
+  position: fixed;
   right: 3%;
   bottom: 100px;
   z-index: 999;

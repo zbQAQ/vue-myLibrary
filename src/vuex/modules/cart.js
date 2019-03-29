@@ -1,6 +1,3 @@
-/**
- * test vuex
- */
 import * as types from '../mutation-types'
 import posts from '@/request/requests'
 // initial state

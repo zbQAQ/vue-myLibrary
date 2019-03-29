@@ -179,7 +179,7 @@ export default {
 <style scoped>
 @import "./goodsinfo.css";
 .shopCartBox{
-  position: absolute;
+  position: fixed;
   right: 3%;
   bottom: 150px;
   z-index: 999;

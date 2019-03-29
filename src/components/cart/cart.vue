@@ -205,6 +205,6 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 @import './cart.css';
 </style>

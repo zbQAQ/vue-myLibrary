@@ -1,7 +1,7 @@
 <template>
-  <div class="app" id="app" @click="changeFuncSel">
+  <div class="app" id="app">
 
-    <headnav :funcSelFlag="funcSelFlag"></headnav>
+    <headnav></headnav>
 
     <router-view></router-view>
 
@@ -20,18 +20,9 @@ export default {
   data() {
     return {
       msg: 'welcome',
-      funcSelFlag: false,
     }
   },
   methods: {
-    changeFuncSel(e) {
-      const target = e.target.className
-      if(target === 'funcSel') {
-        this.funcSelFlag = true
-      }else{
-        this.funcSelFlag = false
-      }
-    },
   }
 }
 </script>

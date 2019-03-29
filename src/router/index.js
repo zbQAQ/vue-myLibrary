@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import AppComponent from '../App'
 import WelCome from '@/components/welcome/welcome'
-import IndexPage from '@/components/index/indexpage'
+import funcList from '@/components/func/funcList'
 import NewsList from '@/components/news/newslist'
 import News from '@/components/news/news'
 import GoodsList from '@/components/goods/goodslist'
@@ -27,9 +27,9 @@ export default new Router({
     },
 
     {
-      path: '/index',
-      name: 'index',
-      component: IndexPage
+      path: '/func',
+      name: 'func',
+      component: funcList
     },
 
     {

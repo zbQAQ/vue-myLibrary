@@ -95,6 +95,18 @@ export default class requests {
       return null
     }
   }
+  static async getFuncList() { //获取功能列表
+    try {
+      const res = await axios.get(url + 'func/funclist')
+      if(res.status === 200 && res.statusText === 'OK') {
+        return res.data
+      }
+      return null
+    } catch (e) {
+      console.log(e)
+      return null
+    }
+  }
   static HtmlDecode(str) { //字符串转义 
     var s = "";
     if (str.length == 0) return "";

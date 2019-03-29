@@ -9,21 +9,7 @@
           <router-link to="/welcome">欢迎</router-link>
         </div>
         <div class="navitem">
-          <a class="funcSel" src="javascript:;">功能</a>
-          <transition
-            name="selecttran"
-            enter-active-class="animated fadeIn "
-            leave-active-class="animated fadeOut "
-          >
-            <div class="select" v-if="funcSelFlag">
-              <ul class="selul">
-                <router-link to="/news/newslist"><li class="selitem">新闻列</li></router-link>
-                <!-- <router-link to="/todo/todolist"><li class="selitem">记事本</li></router-link> -->
-                <router-link to="/goods/goodslist"><li class="selitem">商品列</li></router-link>
-                <!-- <router-link to="/cart"><li class="selitem">购物车</li></router-link> -->
-              </ul>
-            </div>
-          </transition>
+          <router-link to="/func">功能列</router-link>
         </div>
         <div class="navitem">
           <router-link to="/login">登录</router-link>
@@ -43,7 +29,6 @@
 <script>
 export default {
   name: 'welcome',
-  props: ['funcSelFlag'],
   data() {
     return {
       navShowFlag: false,

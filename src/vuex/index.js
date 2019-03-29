@@ -6,6 +6,7 @@ import * as getters from './getters'
 import news from './modules/news'
 import goods from './modules/goods'
 import cart from './modules/cart'
+import func from './modules/func'
 
 Vue.use(Vuex)
 
@@ -18,5 +19,6 @@ export default new Vuex.Store({
     news,
     goods,
     cart,
+    func,
   }
 })

@@ -47,7 +47,21 @@ const getters = {
 }
 
 // actions
-const actions = {}
+const actions = {
+  async buyShopCart ({commit}, shopArr) {
+    let shopLen = shopArr.length
+    let delArr = []
+    let data = {}
+    for(let i = 0; i < shopLen; i++) {
+      data = await posts.doPurchase(shopArr[i].id, shopArr[i].quantity)
+      if(data.status == 0 && data.statusText == "OK") {
+        delArr.push(shopArr[i].id)
+        commit(types.DELETE_CART_LIST, delArr)
+      }
+    }
+    setTimeout(_ => {if(data){alert('购买成功')}},0)
+  }
+}
 
 // mutations
 const mutations = {
@@ -57,10 +71,8 @@ const mutations = {
   [types.DELETE_CART_LIST](state, delArr) {
     let delLen = delArr.length
     let cartList = state.cartList
-    let cartLen = cartList.length
-    // debugger
     for(let i = 0; i < delLen; i++) {
-      let index = cartList.indexOf(cartList.find(v => v.id == delArr[i].id))
+      let index = cartList.indexOf(cartList.find(v => v.id == delArr[i]))
       cartList.splice(index, 1)
     }
     

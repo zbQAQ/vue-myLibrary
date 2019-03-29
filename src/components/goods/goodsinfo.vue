@@ -163,7 +163,8 @@ export default {
         isInShopCart.quantity += this.quantity
       }
       sessionStorage.setItem('shopCart', JSON.stringify(shopCart))
-      
+      var r = confirm('商品成功加入购物车，是否跳转到购物车详情?')
+      if(r) {this.$router.push({path: '/goods/cart'})}
     }
   },
   computed: {

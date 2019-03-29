@@ -15,7 +15,7 @@
             <img :src="'http://applinkupload.oss-cn-shenzhen.aliyuncs.com/alucard263096/blog/goods/' + item.thumb" alt="">
           </div>
           <div class="shopText">
-            <p class="name">{{item.name}}</p>
+            <router-link :to="'/goods/goods/' + item.id" class="name">{{item.name}}</router-link>
             <!-- <p class="stock">库存：{{item.stock}}</p> -->
             <div class="price">¥<span>{{parseInt(item.price).toFixed(2)}}</span></div>
             <div class="quantity">
@@ -52,7 +52,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex'
+import { mapGetters, mapMutations, mapActions } from 'vuex'
 export default {
   name: 'cart',
   data() {
@@ -61,7 +61,7 @@ export default {
     }
   },
   methods: {
-    ...mapMutations({
+    ...mapMutations({ 
       changeCartList: 'CHANGE_CART_LIST',
       delCartList: 'DELETE_CART_LIST',
       cartAddQuantity: 'CART_ADD_QUANTITY',
@@ -72,6 +72,9 @@ export default {
       changeTotal: 'CHANGE_TOTAL',
       changeSelected: 'CHANGE_SELECTED',
     }),
+    ...mapActions([
+      'buyShopCart'
+    ]),
     changeQuantity(id, action) {
       let goods = this.cartList.find(v => v.id == id)
       if(action === 'increase') {
@@ -122,23 +125,29 @@ export default {
       let len = cartList.length
       let willDel = []
       for(let i = 0; i < len; i++) {
-        // debugger
         if(cartList[i].isChecked) {
           willDel.push(cartList[i].id)
-          // this.delCartList(cartList[i].id)
         }
         
       }
-      // sessionStorage.setItem('shopCart')
       this.delCartList(willDel)
     },
-    purchase() {
+    async purchase() {
       let num = this.selected
+      let list = this.cartList
+      let len = list.length
+      let wantDoBuy = []
+      // debugger
       if(num > 0) {
         var r = confirm('你确定要购买' + num + '件此商品吗？（模拟购买，只会减少库存数）')
         if(r == true) {
-          // this.doPurchase({id: id, num: num,})
-          // this.$router.push({path: '/goods/goodslist'})
+          for(let i = 0; i < len; i++) {
+            if(list[i].isChecked) {
+              wantDoBuy.push(list[i])
+            }
+          }
+          await this.buyShopCart(wantDoBuy)
+          this.$router.push({path: '/goods/goodslist'})
           // 购物车的立即购买！！！！！！！！！！！！！！！
         }
       }else {

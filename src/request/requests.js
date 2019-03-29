@@ -83,7 +83,7 @@ export default class requests {
       return null
     }
   }
-  static async doPurchase(id, num) {
+  static async doPurchase(id, num) { //购买商品 id：商品id num：购买个数
     try {
       const res = await axios.get(url + 'goods/goodsbuy?id=' + id + '&num=' + num)
       if(res.status === 200 && res.statusText === 'OK') {

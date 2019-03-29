@@ -2,7 +2,7 @@
   <div class="main">
     
     <div class="headimg">
-      <img src="../../assets/banner1.jpg" alt="">
+      <img src="static/img/banner1.jpg" alt="">
     </div>
     <div class="content">
       <div class="funcItem ripple" v-for="(item, index) of funcList" 

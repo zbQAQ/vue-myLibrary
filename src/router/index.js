@@ -9,6 +9,7 @@ import GoodsList from '@/components/goods/goodslist'
 import GoodsInfo from '@/components/goods/goodsinfo'
 import Login from '@/components/login/login'
 import Cart from '@/components/cart/cart'
+import Collection from '@/components/collection/collection'
 
 Vue.use(Router)
 
@@ -19,7 +20,6 @@ export default new Router({
       redirect: '/welcome',
       component: AppComponent
     },
-
     {
       path: '/welcome',
       name: 'welcome',
@@ -62,7 +62,11 @@ export default new Router({
       path: '/goods/cart',
       name: 'cart',
       component: Cart
-    }
-
+    },
+    {
+      path: '/collection',
+      name: 'collection',
+      component: Collection
+    },
   ]
 })

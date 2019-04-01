@@ -33,3 +33,6 @@ export const CHANGE_SELECTED = 'CHANGE_SELECTED'
 
 //func
 export const CHANGE_FUNC_LIST = 'CHANGE_FUNC_LIST'
+
+//collection
+export const CHANGE_COLLECTION = 'CHANGE_COLLECTION'

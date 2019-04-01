@@ -124,4 +124,44 @@ export default class requests {
   
     return s;
   }
+  static async getCollectionList() { //获取收藏夹列表
+    try {
+      const res = await axios.get(url + 'collection/getlist')
+      if(res.status === 200 && res.statusText === 'OK') {
+        return res.data
+      }
+      return null
+    } catch (e) {
+      console.log(e)
+      return null
+    }
+  }
+  static async addCollection(name, link, label) { //收藏夹新增 name:名称 link:链接 label:标签
+    try {
+      const res = await axios.get(url + 'collection/insert?name=' + name + '&link=' + link + '&label=' + label)
+      if(res.status === 200 && res.statusText === 'OK') {
+        // return res.data
+        // 如果新增成功则再请求一次收藏夹列表 并返回
+        return this.getCollectionList()
+      }
+      return null
+    } catch (e) {
+      console.log(e)
+      return null
+    }
+  }
+  static async delCollection(id) { //收藏夹删除
+    try {
+      const res = await axios.get(url + 'collection/delete?id=' + id)
+      if(res.status === 200 && res.statusText === 'OK') {
+        // return res.data
+        // 如果删除成功则再请求一次收藏夹列表 并返回
+        return this.getCollectionList()
+      }
+      return null
+    } catch (e) {
+      console.log(e)
+      return null
+    }
+  }
 }

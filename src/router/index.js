@@ -10,6 +10,7 @@ import GoodsInfo from '@/components/goods/goodsinfo'
 import Login from '@/components/login/login'
 import Cart from '@/components/cart/cart'
 import Collection from '@/components/collection/collection'
+import CreateColl from '@/components/collection/createColl'
 
 Vue.use(Router)
 
@@ -67,6 +68,11 @@ export default new Router({
       path: '/collection',
       name: 'collection',
       component: Collection
+    },
+    {
+      path: '/collection/add',
+      name: 'createColl',
+      component: CreateColl
     },
   ]
 })

@@ -96,7 +96,7 @@ const mutations = {
     let list = state.cartList
     for(let i = 0; i < list.length; i++) {
       if(list[i].id == id) {
-        state.cartList[i].quantity = num
+        state.cartList[i].quantity = parseInt(num)
       }
     }
   },
@@ -110,11 +110,11 @@ const mutations = {
   [types.CHANGE_ALLCHECKED](state, flag) {
     state.allChecked = flag
   },
-  [types.CHANGE_TOTAL](state, total) {
-    state.total = total
+  [types.CHANGE_TOTAL](state, sum) {
+    state.total = sum
   },
   [types.CHANGE_SELECTED](state, num) {
-    state.selected = num
+    state.selected = parseInt(num)
   },
 }
 export default {

@@ -39,11 +39,11 @@
           <div class="g-select">
             <span class="g-key">数 量:</span>
             <div class="g-buynum">
-              <a href="javascript:;" class="buy-add" @click="addQuantity">
+              <a href="javascript:;" class="buy-add" @click="addQuan">
                 <i class="fa fa-plus"></i>
               </a>
-              <input type="text" class="buy-number" :value="quantity" @change="quantityInput">
-              <a href="javascript:;" class="buy-reduce" @click="reduceQuantity">
+              <input type="text" class="buy-number" :value="quantity" @change="quantityInput" @keydown.enter="quantityInput">
+              <a href="javascript:;" class="buy-reduce" @click="reduceQuan">
                 <i class="fa fa-minus"></i>
               </a>
             </div>
@@ -94,7 +94,7 @@ export default {
     return {
       msg: 'goodsInfo',
       isLoading: true,
-      id: 0
+      id: 0,
     }
   },
   async created() {
@@ -122,17 +122,20 @@ export default {
     quantityInput(e) {
       // debugger
       let goods = this.goods
-      let num = parseInt(e.target.value)
-      if(parseInt(num) > 0) {
-        if(num > goods.stock) {
+      let num = e.target.value
+      // console.log(, 'num')
+      if(!isNaN(num) && parseInt(num) > 0) {
+        if(parseInt(num) > goods.stock) {
           e.target.value = this.quantity
-          alert('不能超过库存哦')
+          // alert('不能超过库存哦')
+          this.$toast({msg: '不能超过库存哦', type: 'warn', duration: 2000, position: 'middle'})
         }else {
           this.changesQuantity(num)
         }
       }else {
         e.target.value = this.quantity
-        alert('你输入的值不合法')
+        // alert('你输入的值不合法')
+        this.$toast({msg: '你输入的值不合法', type: 'warn', duration: 2000, position: 'middle'})
       }
     },
     purchase() {
@@ -142,6 +145,7 @@ export default {
       if(r == true) {
         this.doPurchase({id: id, num: num,})
         this.$router.push({path: '/goods/goodslist'})
+        this.$toast({msg: '购买成功', type: 'success', duration: 2000, position: 'middle'})
       }
     },
     addToCart() {
@@ -165,7 +169,13 @@ export default {
       sessionStorage.setItem('shopCart', JSON.stringify(shopCart))
       var r = confirm('商品成功加入购物车，是否跳转到购物车详情?')
       if(r) {this.$router.push({path: '/goods/cart'})}
-    }
+    },
+    addQuan() {
+      this.addQuantity(this.$toast)
+    },
+    reduceQuan() {
+      this.reduceQuantity(this.$toast)
+    },
   },
   computed: {
     ...mapGetters([

@@ -80,20 +80,22 @@ const mutations = {
   [types.CHANGE_GOODS_VIEW](state, num) {
     state.goodsinfo.goods.goods_view += num
   },
-  [types.ADD_QUANTITY](state) {
+  [types.ADD_QUANTITY](state, $toast) {
 
     if( state.goodsinfo.quantity + 1 <= state.goodsinfo.goods.stock ) {
       state.goodsinfo.quantity++
     }else {
-      alert('不能超出库存')
+      // alert('不能超出库存')
+      $toast({msg: '不能超过库存哦', type: 'warn', duration: 2000, position: 'middle'})
     }
   },
-  [types.REDUCE_QUANTITY](state) {
+  [types.REDUCE_QUANTITY](state, $toast) {
     // state.goodsinfo.quantity--
     if( state.goodsinfo.quantity - 1 > 0 ) {
       state.goodsinfo.quantity--
     }else {
-      alert('最少为1哦')
+      // alert('最少为1哦')
+      $toast({msg: '最少为1哦', type: 'warn', duration: 2000, position: 'middle'})
     }
   },
   [types.CHANGE_QUANTITY](state, num) {

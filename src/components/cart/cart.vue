@@ -20,7 +20,7 @@
             <div class="price">¥<span>{{parseInt(item.price).toFixed(2)}}</span></div>
             <div class="quantity">
               <a class="add" href="javascript:;" @click="changeQuantity(item.id, 'reduce')">-</a>
-              <input type="text" class="tityNum" :value="item.quantity" @change="inputQuantity(item.id, $event)">
+              <input type="text" class="tityNum" :value="item.quantity" @change="inputQuantity(item.id, $event)" @keydown.enter="inputQuantity(item.id, $event)">
               <a class="reduce" href="javascript:;" @click="changeQuantity(item.id, 'increase')">+</a>
             </div>
           </div>
@@ -79,35 +79,38 @@ export default {
       let goods = this.cartList.find(v => v.id == id)
       if(action === 'increase') {
         //点击增加按钮
-        if( goods.quantity + 1 <= goods.stock ) {
+        if( parseInt(goods.quantity) + 1 <= goods.stock ) {
           this.changeOnceChecked({id: id, flag: true})
           this.cartAddQuantity(id)
         }else {
-          alert('不能超出库存')
+          // alert('不能超出库存')
+          this.$toast({msg: '不能超过库存哦', type: 'warn', duration: 2000, position: 'top'})
         }
       }else {
         //点击减少按钮
         if( goods.quantity - 1 > 0 ) {
           this.cartReduceQuantity(id)
         }else {
-          alert('最少为1哦')
+          // alert('最少为1哦')
+          this.$toast({msg: '最少为1哦', type: 'warn', duration: 2000, position: 'top'})
         }
       }
     },
     inputQuantity(id, e) {
       let goods = this.cartList.find(v => v.id === id)
-      let num = parseInt(e.target.value)
-      if(parseInt(num) > 0) {
-        if(num > goods.stock) {
-          e.target.value = goods.quantity
-          alert('不能超过库存哦')
+      let num = e.target.value
+      if(!isNaN(num) && parseInt(num) > 0) {
+        if(parseInt(num) > goods.stock) {
+          // alert('不能超过库存哦')
+          this.$toast({msg: '不能超过库存哦', type: 'warn', duration: 2000, position: 'top'})
         }else {
           this.cartInputQuantity({id: id, num: num})
         }
       }else {
-        e.target.value = goods.quantity
-        alert('你输入的值不合法')
+        // alert('你输入的值不合法')
+        this.$toast({msg: '你输入的值不合法', type: 'warn', duration: 2000, position: 'top'})
       }
+      e.target.value = goods.quantity
     },
     checkAll(flag) {
       let list = this.cartList
@@ -128,9 +131,16 @@ export default {
         if(cartList[i].isChecked) {
           willDel.push(cartList[i].id)
         }
-        
       }
-      this.delCartList(willDel)
+      if(willDel.length > 0) {
+        var r = confirm('你确定要从购物车删除这件商品吗？')
+         if(r == true) {
+          this.delCartList(willDel)
+          this.$toast({msg: '删除成功', type: 'success', duration: 2000, position: 'top'})
+         }
+      }else {
+        this.$toast({msg: '你还有没有选中任何商品', type: 'warn', duration: 2000, position: 'top'})
+      }
     },
     async purchase() {
       let num = this.selected
@@ -148,10 +158,11 @@ export default {
           }
           await this.buyShopCart(wantDoBuy)
           this.$router.push({path: '/goods/goodslist'})
-          // 购物车的立即购买！！！！！！！！！！！！！！！
+          this.$toast({msg: '购买成功', type: 'success', duration: 2000, position: 'top'})
         }
       }else {
-        alert('你还没有选中任何商品!')
+        // alert('你还没有选中任何商品!')
+        this.$toast({msg: '你还没有选中任何商品', type: 'warn', duration: 2000, position: 'top'})
       }
     },
   },

@@ -2,8 +2,8 @@
   <transition
     name="goback"
     mode="out-in"
-    enter-active-class="animated fadeIn"
-    leave-active-class="animated fadeOut"
+    enter-active-class="animated fadeInUp"
+    leave-active-class="animated fadeOutDown"
   >
     <div class="goback-box">
 
@@ -36,8 +36,9 @@ export default {
         this.$router.go(-1)
       }
     }
+  },
+  created() {
   }
-
 }
 </script>
 

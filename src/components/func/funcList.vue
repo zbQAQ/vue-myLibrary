@@ -5,10 +5,7 @@
       <img src="static/img/banner1.jpg" alt="">
     </div>
     <div class="content">
-      <div class="funcItem ripple" v-for="(item, index) of funcList" 
-        :key="index" 
-        :style="{backgroundColor: item.bgcolor, color: item.color}"
-      >
+      <div class="funcItem ripple" v-for="(item, index) of funcList" :key="index" :style="{backgroundColor: item.bgcolor, color: item.color}">
         <div class="func">
           <div class="leftIcon">
             <img :src="'http://applinkupload.oss-cn-shenzhen.aliyuncs.com/alucard263096/blog/func/' + item.iconpath" alt="">
@@ -22,7 +19,6 @@
           
         </div>
       </div>
-      
     </div>
   </div>
 </template>
@@ -33,41 +29,7 @@ export default {
   name: 'func',
   data(){
     return {
-      msg: 'this is funclist'
-      // funcList: [
-      //   {
-      //     id: 1,
-      //     name: '新闻列表',
-      //     iconPath: 'static/img/news.png',
-      //     bgColor: '#ffb55c',
-      //     color: '#fff',
-      //     path: '/news/newslist'
-      //   },
-      //   {
-      //     id: 2,
-      //     name: '商品列表',
-      //     iconPath: 'static/img/goods.png',
-      //     bgColor: '#61a7ff',
-      //     color: '#fff',
-      //     path: '/goods/goodslist'
-      //   },
-      //   {
-      //     id: 3,
-      //     name: '购物车',
-      //     iconPath: 'static/img/shopCart.png',
-      //     bgColor: '#ff5966',
-      //     color: '#fff',
-      //     path: '/goods/cart'
-      //   },
-      //   {
-      //     id: 4,
-      //     name: '功能列表',
-      //     iconPath: 'static/img/func.png',
-      //     bgColor: '#775fff',
-      //     color: '#fff',
-      //     path: '/func'
-      //   },
-      // ]
+      // msg: 'this is funclist'
     }
   },
   async created() {
@@ -79,7 +41,7 @@ export default {
     ]),
     toFuncDetail(path) {
       this.$router.push({path: path})
-    }
+    },
   },
   computed: {
     ...mapGetters([

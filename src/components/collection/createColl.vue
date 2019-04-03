@@ -44,16 +44,18 @@ export default {
       'addCollList',
     ]),
     async addCollection() {
-      let name = this.nameInput
-      let link = this.linkInput
-      let label = this.labelInput
+      let name = this.nameInput.trim()
+      let link = this.linkInput.trim()
+      let label = this.labelInput.trim()
       if(name != "" && link != "" && label != "") {
         await this.addCollList({name: name, link: link, label: label})
         this.nameInput = this.linkInput = this.labelInput = ""
-        alert('新增成功')
+        // alert('新增成功')
+        this.$toast({msg: '新增成功', type: 'success', duration: 2000, position: 'top'})
         this.$router.push({path: '/collection'})
       }else {
-        alert('输入值不能为空!')
+        // alert('输入值不能为空!')
+        this.$toast({msg: '输入值不能为空', type: 'warn', duration: 2000, position: 'top'})
       }
     },
   },

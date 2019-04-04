@@ -96,7 +96,6 @@ export default {
         }
         this.changeFilterColl(arr)
         this.searchFlag = true
-        console.log(new RegExp(keyWord))
       }else {
         this.searchFlag = false
         // alert('输入值不能为空!')

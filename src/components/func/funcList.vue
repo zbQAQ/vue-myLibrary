@@ -19,6 +19,11 @@
           
         </div>
       </div>
+
+      <!-- <h1 v-for="item of testArr">
+        {{item.name ? item.name : item}}
+      </h1> -->
+
     </div>
   </div>
 </template>
@@ -30,6 +35,11 @@ export default {
   data(){
     return {
       // msg: 'this is funclist'
+      // testArr: [
+      //   {id: 1, name: '111'},
+      //   {id: 2, name: '222'},
+      //   {id: 3, name: '333'},
+      // ]
     }
   },
   async created() {

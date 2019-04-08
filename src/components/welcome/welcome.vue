@@ -2,7 +2,6 @@
   <div class="main" >
     <!-- btn welcome -->
     <h1>{{msg}}</h1>
-
   </div>
 </template>
 

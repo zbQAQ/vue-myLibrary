@@ -15,7 +15,7 @@ function createInstance() {
     queue.push(toastDom);
     singleToast = true;
     
-    // console.log(ToastConstructor, toastDom, 'ToastConstructor and toastDom')
+    // console.log(queue, 'queue')
 
     return toastDom;
   }

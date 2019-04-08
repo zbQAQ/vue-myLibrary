@@ -17,9 +17,6 @@ import store from './vuex/index' //引入vuex
 import toast from './components/tools/toast/index'
 Vue.use(toast)
 
-// import mock from './mock/mock'
-require('./mock/mock')
-
 Vue.config.productionTip = false
 /* eslint-disable no-new */
 

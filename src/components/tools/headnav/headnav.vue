@@ -12,7 +12,7 @@
           <router-link to="/func">功能列</router-link>
         </div>
         <div class="navitem">
-          <router-link to="/login">登录</router-link>
+          <router-link to="/resume">简历</router-link>
         </div>
 
       </div>

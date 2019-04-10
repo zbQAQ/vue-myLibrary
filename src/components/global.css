@@ -8,5 +8,5 @@ li{list-style:none}
 img{border:0;vertical-align:middle} 
 table{border-collapse:collapse;border-spacing:0} 
 p{word-wrap:break-word}
-.app .main{overflow: auto;}
+/* .app .main{overflow: auto;} */
 /* .app .main{background: url(../assets/block.png);background-repeat:repeat;} */

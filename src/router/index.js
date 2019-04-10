@@ -7,7 +7,7 @@ import NewsList from '@/components/news/newslist'
 import News from '@/components/news/news'
 import GoodsList from '@/components/goods/goodslist'
 import GoodsInfo from '@/components/goods/goodsinfo'
-import Login from '@/components/login/login'
+import Resume from '@/components/resume/resume'
 import Cart from '@/components/cart/cart'
 import Collection from '@/components/collection/collection'
 import CreateColl from '@/components/collection/createColl'
@@ -55,9 +55,9 @@ export default new Router({
       component: GoodsInfo
     },
     {
-      path: '/login',
-      name: 'login',
-      component: Login
+      path: '/resume',
+      name: 'resume',
+      component: Resume
     },
     {
       path: '/goods/cart',

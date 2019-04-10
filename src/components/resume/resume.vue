@@ -21,10 +21,10 @@
 
 <script>
 export default {
-  name: 'login',
+  name: 'resume',
   data() {
     return {
-      msg: 'this is login'
+      msg: 'this is resume'
     }
   },
   methods: {
@@ -33,6 +33,6 @@ export default {
 }
 </script>
 
-<style>
-  @import './login.css';
+<style scoped>
+  @import './resume.css';
 </style>

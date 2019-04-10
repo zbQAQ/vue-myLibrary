@@ -63,6 +63,7 @@ export default {
 
 <style scoped>
 @import './funcList.css';
+
 .ripple {
     position: relative;
     overflow: hidden;

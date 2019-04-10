@@ -128,4 +128,7 @@ export default {
 
 <style scoped>
 @import './collection.css';
+.absolute {
+  position: absolute;
+}
 </style>

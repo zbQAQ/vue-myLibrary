@@ -18,9 +18,9 @@ export default {
 
 <style scoped>
 .main {
+  position: fixed;
   width: 100%;
   height: 100%;
-
   background: url('../../../static/img/welcome1.jpg');
   background-position: center;
   background-size: cover;

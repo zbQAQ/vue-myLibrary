@@ -29,10 +29,19 @@ export default {
 
 <style scoped>
 .app {
-  height: 100%;
+  /* height: 100%; */
+  position: relative;
+  min-height: 100%;
+  background-color: #f5f5f5;
+}
+.main {
+  position: relative;
 }
 .footer {
-  position: fixed;
+  /* position: fixed; */
+  position: absolute;
+  /* position: relative; */
+  left: 0;
   bottom: 0;
   width: 100%;
   height: 30px;

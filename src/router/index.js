@@ -11,6 +11,7 @@ import Resume from '@/components/resume/resume'
 import Cart from '@/components/cart/cart'
 import Collection from '@/components/collection/collection'
 import CreateColl from '@/components/collection/createColl'
+import mineSweeper from '@/components/mineSweeper/mineSweeper'
 
 Vue.use(Router)
 
@@ -73,6 +74,11 @@ export default new Router({
       path: '/collection/add',
       name: 'createColl',
       component: CreateColl
+    },
+    {
+      path: '/mineSweeper',
+      name: 'mineSweeper',
+      component: mineSweeper
     },
   ]
 })

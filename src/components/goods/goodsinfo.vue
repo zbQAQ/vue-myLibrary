@@ -67,7 +67,7 @@
 
     <div class="content pro-content" v-if="!isLoading" >
       <h1 class="title">商品详情</h1>
-      <div v-html="goods.content"></div>
+      <div class="infoContent" v-html="goods.content"></div>
       <div class="copyTips">
         内容均取自淘宝, 无商业用途
       </div>
@@ -217,5 +217,9 @@ export default {
 .shopCartBox .shopCart a:hover {
   color: #fff;
   background: #64abe9;
+}
+.infoContent >>> img{
+  width: 100%;
+  max-width: 100%;
 }
 </style>

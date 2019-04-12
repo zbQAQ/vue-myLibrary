@@ -37,7 +37,7 @@
       </p>
       <p>难度：
         <input type="number" :max="inputRange.diffRange.max" :min="inputRange.diffRange.min" id="diffInput" placeholder="输入游戏难度" v-model="difficulty">
-        <span class="inputTip" style="margin-right: 9px;">最大10, 最小1 </span>
+        <span class="inputTip">最大10, 最小1&nbsp;&nbsp;</span>
       </p>
       <p><button type="button" @click="mapInit">开始游戏</button></p>
     </div>
@@ -236,13 +236,13 @@ export default {
       }
       this.gameIsEnd = true
       this.timerStep(false)
-      alert('你死了傻逼')
+      alert('你输了！')
     },
     passGame() {
       //加入计时器是为了 先显示旗帜标记 再弹框
       setTimeout(_ => {
         this.gameIsEnd = true
-        alert('恭喜你通关了')
+        alert('恭喜你通关了！')
       }, 0)
     },
     watchEndGame() {

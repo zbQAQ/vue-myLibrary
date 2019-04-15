@@ -6,7 +6,7 @@
  */
 
 import axios from 'axios'
-const url = 'http://cmsdev.app-link.org/alucard263096/blog/api/'
+const url = 'https://cmsdev.app-link.org/alucard263096/blog/api/'
           // http://cmsdev.app-link.org/alucard263096/blog/api/
 
           // goods_thumb --> http://applinkupload.oss-cn-shenzhen.aliyuncs.com/alucard263096/blog/goods/ ......

@@ -11,7 +11,8 @@ import Resume from '@/components/resume/resume'
 import Cart from '@/components/cart/cart'
 import Collection from '@/components/collection/collection'
 import CreateColl from '@/components/collection/createColl'
-import mineSweeper from '@/components/mineSweeper/mineSweeper'
+import MineSweeper from '@/components/mineSweeper/mineSweeper'
+import FlyBird from '@/components/flyBird/flyBird'
 
 Vue.use(Router)
 
@@ -78,7 +79,12 @@ export default new Router({
     {
       path: '/mineSweeper',
       name: 'mineSweeper',
-      component: mineSweeper
+      component: MineSweeper
+    },
+    {
+      path: '/flyBird',
+      name: 'flyBird',
+      component: FlyBird
     },
   ]
 })

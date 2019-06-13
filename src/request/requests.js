@@ -98,6 +98,7 @@ export default class requests {
   static async getFuncList() { //获取功能列表
     try {
       const res = await axios.get(url + 'func/funclist')
+      // console.log(res, 'getFuncList')
       if(res.status === 200 && res.statusText === 'OK') {
         return res.data
       }

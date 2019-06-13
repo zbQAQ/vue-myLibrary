@@ -19,6 +19,20 @@
           
         </div>
       </div>
+      <div class="funcItem ripple" style="backgroundColor: #7bca38; color: #fff">
+        <div class="func">
+          <div class="leftIcon">
+            <img src="static/img/birdIcon.png" alt="">
+          </div>
+          <div class="rightCnt">
+            <p @click="toFuncDetail('/flyBird')">飞扬的小鸟(div版)</p>
+            <router-link to="/flyBird" class="inBtn">
+              <img src="../../../static/img/right.png" alt="">
+            </router-link>
+          </div>
+          
+        </div>
+      </div>
 
       <!-- <h1 v-for="item of testArr">
         {{item.name ? item.name : item}}

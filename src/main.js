@@ -20,10 +20,13 @@ Vue.use(toast)
 Vue.config.productionTip = false
 /* eslint-disable no-new */
 
+<<<<<<< HEAD
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
 
+=======
+>>>>>>> cfd9e8b4eacd8af54b7a800195ce364d0efe0b32
 Vue.filter('datefmt', (input, fmt = 'yyyy-MM-dd') => {
   // console.log(input, fmt, 'main datefmt')
 	var date = new Date(input);

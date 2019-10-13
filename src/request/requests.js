@@ -128,7 +128,10 @@ export default class requests {
   static async getCollectionList() { //获取收藏夹列表
     try {
       const res = await axios.get(url + 'collection/getlist')
+<<<<<<< HEAD
       console.log('获取收藏夹列表:', res)
+=======
+>>>>>>> cfd9e8b4eacd8af54b7a800195ce364d0efe0b32
       if(res.status === 200 && res.statusText === 'OK') {
         return res.data
       }

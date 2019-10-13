@@ -18,6 +18,7 @@ module.exports = {
     errorOverlay: true,
     notifyOnErrors: true,
     poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
+<<<<<<< HEAD
     /** 由于后端用cors跨域不成功 使用前端代理跨域 */
     proxyTable: {
       '/request_admin':{
@@ -28,6 +29,8 @@ module.exports = {
         }
       }
     },
+=======
+>>>>>>> cfd9e8b4eacd8af54b7a800195ce364d0efe0b32
 
     
     /**

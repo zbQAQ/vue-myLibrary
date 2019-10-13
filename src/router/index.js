@@ -14,6 +14,7 @@ import CreateColl from '@/components/collection/createColl'
 import MineSweeper from '@/components/mineSweeper/mineSweeper'
 import FlyBird from '@/components/flyBird/flyBird'
 
+<<<<<<< HEAD
 
 /** 管理页面 */
 import adminLayOut from '@/components/adminPage/adminLayOut'
@@ -21,6 +22,8 @@ import adminList from '@/components/adminPage/adminList'
 import adminUpdate from '@/components/adminPage/adminUpdate'
 import adminCreate from '@/components/adminPage/adminCreate'
 
+=======
+>>>>>>> cfd9e8b4eacd8af54b7a800195ce364d0efe0b32
 Vue.use(Router)
 
 export default new Router({
@@ -93,6 +96,7 @@ export default new Router({
       name: 'flyBird',
       component: FlyBird
     },
+<<<<<<< HEAD
     {
       path: '/admin',
       redirect: '/admin/list',
@@ -115,5 +119,7 @@ export default new Router({
         },
       ]
     },
+=======
+>>>>>>> cfd9e8b4eacd8af54b7a800195ce364d0efe0b32
   ]
 })

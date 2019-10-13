@@ -1,0 +1,80 @@
+.main {
+  /* position: absolute; */
+  width: 100%;
+  height: 100%;
+  background: #f5f5f5;
+}
+.main .headimg {
+  width: 100%;
+  height: 450px;
+  overflow: hidden;
+  box-shadow: 0px 0px 20px 3px #999;
+  z-index: 1;
+}
+.main .headimg img{
+  width: 100%;
+  height: 100%;
+  min-height: 200px;
+}
+.content {
+  box-sizing: border-box;
+  position: relative;
+  top: -30px;
+  margin: 0 auto; 
+  width: 95%;
+  background-color: #fff;
+  border: 20px solid #fff;
+  transition: 0.2s ease;
+}
+.content .funcItem {
+  padding: 15px 30px;
+  border-radius: 20px;
+  margin-bottom: 30px;
+}
+.content .funcItem .func {
+  display: flex;
+  cursor: pointer;
+}
+.content .funcItem .func .leftIcon {
+  margin-right: 5%;
+}
+.content .funcItem .func .rightCnt {
+  display: flex;
+  flex: 1;
+} 
+.content .funcItem .func .rightCnt p {
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 32px;
+}
+.content .funcItem .func .rightCnt .inBtn {
+  margin-left: auto;
+}
+
+@media (max-width: 500px) {
+  .content .funcItem .func {
+    flex-direction: column;
+  }
+  .content .funcItem .func .rightCnt {
+    padding: 10px 0;
+  }
+}
+
+@media (min-width: 992px) {
+  .content {
+    top: -70px;
+    width: 70%;
+  }
+}
+@media (min-width: 1200px) {
+  .content {
+    top: -120px;
+    width: 50%;
+    border: 50px solid #fff;
+  }
+}
+@media (max-width: 1630px) {
+  .main .headimg {
+    height: auto;
+  }
+}

@@ -1,0 +1,41 @@
+
+.goback-box{
+  position: fixed;
+  right: 3%;
+  bottom: 100px;
+  z-index: 999;
+}
+.goback-box .goback{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #fff;
+  overflow: hidden;
+  box-shadow: 1px 1px 10px -1px #999;
+}
+.goback-box .goback a{
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  line-height: 38px;
+  font-size: 16px;
+  text-align: center;
+  /* margin-left: -1px; */
+  color: #666;
+  transition: 0.2s ease-in;
+}
+.goback-box .goback a:hover {
+  color: #fff;
+  background: #f9bf3a;
+}
+/* 
+.goback-box .goback a span {
+  display: inline-block;
+  position: absolute;
+  left: 0px;
+  top: 0;
+  font-size: 12px;
+  height: 25px;
+  line-height: 25px;
+} */

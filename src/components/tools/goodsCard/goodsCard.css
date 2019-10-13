@@ -1,0 +1,115 @@
+.goods-card{
+  /* width: 250px; */
+  /* width: calc(100% / 4); */
+  box-sizing: border-box;
+  height: 300px;
+  margin-right: 20px;
+  margin-top: 15px;
+  border-radius: 2px;
+  border: 1px solid #e8e8e8;
+  box-shadow: 2px 3px 8px -2px #c1c0c0;
+  overflow: hidden;
+  transition: .15s ease-in;
+  /* flex: 0 1 auto; */
+}
+.goods-card:hover{
+  border-color: #ddd;
+  box-shadow: 2px 3px 12px -2px #8e8e8e;
+}
+
+.goods-card .imgbox{
+  display: block;
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+}
+.goods-card .imgbox img{
+  width: 100%;
+  height: 100%;
+  transition: 0.2s ease;
+}
+.goods-card .imgbox img:hover{
+  transform: scale(1.5);
+}
+
+.goods-card .row{
+  box-sizing: border-box;
+  width: 200px;
+  padding: 0 10px;
+}
+
+.goods-card .row.row-1{
+  position: relative
+  
+}
+.goods-card .row.row-1 .g-price{
+  color: #f10215;
+  line-height: 30px;
+  font-size: 18px;
+  letter-spacing:1px;
+  cursor: default;
+}
+
+.goods-card .row.row-1 .g-price i{
+  margin-right: 5px;
+  font-size: 16px;
+}
+.goods-card .row.row-1 .g-cate{
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  margin-top: -8px;
+}
+.goods-card .row.row-1 .g-cate .span-type{
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 0px 3px;
+  border-radius: 2px;
+  color: #f5f5f5;
+  font-size: 12px;
+  height: 15px;
+  line-height: 15px;
+  background: #81b2eb;
+}
+
+.goods-card .row.row-2{
+  height: 40px;
+  overflow: hidden;
+}
+.goods-card .row.row-2 .g-name{
+  display: block;
+  width: 100%;
+  height: 100%;
+  word-wrap: break-word;
+  transition: 0.2s ease-in;
+  line-height: 20px;
+}
+
+.goods-card .row.row-3{
+  margin-top: 6px;
+  height: 22px;
+  line-height: 22px;
+  overflow: hidden;
+  color: #999;
+  cursor: default;
+}
+.goods-card .row.row-3 .g-stock{
+  float: left;
+}
+.goods-card .row.row-3 .g-time{
+  float: right;
+}
+
+@media (max-width: 495px) {
+  .goods-card{
+    width: 100%;
+    height: auto;
+  }
+  .goods-card .imgbox {
+    width: 100%;
+    height: auto;
+  }
+  .goods-card .row {
+    width: 100%;
+  }
+}

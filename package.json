@@ -12,10 +12,7 @@
   "dependencies": {
     "animate.css": "^3.7.0",
     "axios": "^0.18.0",
-<<<<<<< HEAD
     "element-ui": "^2.12.0",
-=======
->>>>>>> cfd9e8b4eacd8af54b7a800195ce364d0efe0b32
     "font-awesome": "^4.7.0",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",

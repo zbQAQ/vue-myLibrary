@@ -37,14 +37,14 @@ export default {
       msg: 'hello adminCreate!',
       loading: false,
       form: {
-        name: '',
-        link: '',
-        cate: '',
+        name: 'test' + Math.random().toFixed(2),
+        link: 'test' + Math.random().toFixed(2),
+        cate: 'test' + Math.random().toFixed(2),
         createTime: '',
       },
       rules: {
         name: [
-          { required: true, message: '请输入收藏项名称', trigger: 'blur' },
+          { required: false, message: '请输入收藏项名称', trigger: 'blur' },
         ],
         link: [
           { required: true, message: '请输入收藏项链接', trigger: 'blur' },

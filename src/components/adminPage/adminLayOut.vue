@@ -10,9 +10,9 @@
             :default-openeds="['1']">
             <el-submenu index="1">
               <span slot="title">收藏夹管理</span>
-              <el-menu-item index="1-1">列表</el-menu-item>
-              <el-menu-item index="1-2">创建</el-menu-item>
-              <el-menu-item index="1-3">编辑</el-menu-item>
+              <el-menu-item index="1-1" @click="clickRouter('/admin/list')">列表</el-menu-item>
+              <el-menu-item index="1-2" @click="clickRouter('/admin/create')">创建</el-menu-item>
+              <el-menu-item index="1-3" @click="clickRouter('/admin/update')">编辑</el-menu-item>
             </el-submenu>
           </el-menu>
 
@@ -32,7 +32,11 @@ export default {
 			msg: 'hello adminLayOut!'
 		}
   },
-	methods: {}
+	methods: {
+    clickRouter(path) {
+      this.$router.push(path)
+    }
+  }
 }
 </script>
 <style scoped>

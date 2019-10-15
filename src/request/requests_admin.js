@@ -38,6 +38,48 @@ export default class requests {
       return null
     }
   }
+  static async getFavoriteDetail(id) { //查询某项详情
+    try {
+      const res = await axios.get('/request_admin/favorites/detail/' + id)
+      console.log('getFavoriteDetail:', res)
+      // debugger
+      if(res.status === 200 && res.data.code === 1) {
+        return res.data.data
+      }
+      return null
+    } catch (e) {
+      console.log(e)
+      return null
+    }
+  }
+  static async updateFavoriteOneDetail(id, data) { //修改某项
+    try {
+      const res = await axios.put('/request_admin/favorites/edit/' + id, data)
+      console.log('updateFavoriteOneDetail:', res)
+      // debugger
+      if(res.status === 200 && res.statusText === 'OK') {
+        return res.data
+      }
+      return null
+    } catch (e) {
+      console.log(e)
+      return null
+    }
+  }
+  static async deleteFavoriteOne(id) { //删除某项
+    try {
+      const res = await axios.delete('/request_admin/favorites/' + id)
+      console.log('deleteFavoriteOne:', res)
+      // debugger
+      if(res.status === 200 && res.statusText === 'OK') {
+        return res.data
+      }
+      return null
+    } catch (e) {
+      console.log(e)
+      return null
+    }
+  }
 }
 
 
@@ -63,12 +105,11 @@ axios.interceptors.response.use(response => {
   const res = response.data
 
   if(res.code !== 1) {
-    Message.error(res.err)
-    return Promise.reject(res);
+    Message.error(res.message);
   }
-
+  
   return response;
 }, err => {
-  Message.error(err.response.data)
+  Message.error('服务器错误请联系管理员！！')
   return Promise.reject(err);
 })

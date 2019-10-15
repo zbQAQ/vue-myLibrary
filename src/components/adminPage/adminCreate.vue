@@ -22,14 +22,13 @@
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit">立即创建</el-button>
-        <el-button>取消</el-button>
+        <el-button @click="$router.push('/admin/list')">返回</el-button>
       </el-form-item>
     </el-form>
 	</div>
 </template>
 <script>
 import posts from '@/request/requests_admin.js'
-import { formatDate } from '@/components/tools/formatDate/formatDate.js' //时间格式化工具
 export default {
   name: 'adminCreate',
   data () {
@@ -37,14 +36,14 @@ export default {
       msg: 'hello adminCreate!',
       loading: false,
       form: {
-        name: 'test' + Math.random().toFixed(2),
-        link: 'test' + Math.random().toFixed(2),
-        cate: 'test' + Math.random().toFixed(2),
+        name: "",
+        link: "",
+        cate: "",
         createTime: '',
       },
       rules: {
         name: [
-          { required: false, message: '请输入收藏项名称', trigger: 'blur' },
+          { required: true, message: '请输入收藏项名称', trigger: 'blur' },
         ],
         link: [
           { required: true, message: '请输入收藏项链接', trigger: 'blur' },
@@ -60,11 +59,14 @@ export default {
   },
 	methods: {
     onSubmit() {
-       this.$refs['form'].validate(async (valid) => {
+      this.$refs['form'].validate(async (valid) => {
         if (valid) {
           this.loading = true
-          const result = await posts.createOneFavorite(this.form)
-
+          const res = await posts.createOneFavorite(this.form)
+          if(res.code === 1) {
+						this.$message.success(res.message)
+						this.$router.push('/admin/list')
+					}
           this.loading = false
         } else {
           console.log('error submit!!');
@@ -73,9 +75,7 @@ export default {
       });
     }
   },
-  created() {
-    this.form.createTime = formatDate(new Date(), 'yyyy-MM-dd')
-  }
+  created() {}
 }
 </script>
 <style scoped>

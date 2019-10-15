@@ -12,12 +12,11 @@
               <span slot="title">收藏夹管理</span>
               <el-menu-item index="1-1" @click="clickRouter('/admin/list')">列表</el-menu-item>
               <el-menu-item index="1-2" @click="clickRouter('/admin/create')">创建</el-menu-item>
-              <el-menu-item index="1-3" @click="clickRouter('/admin/update')">编辑</el-menu-item>
             </el-submenu>
           </el-menu>
-
         </el-aside>
         <el-main>
+          <h2 class="title">{{$route.name}}页</h2>
           <router-view :key="$route.path"></router-view>
         </el-main>
       </el-container>
@@ -42,5 +41,12 @@ export default {
 <style scoped>
 .adminLayOut {
   height: calc(100vh - 30px);
+}
+.title {
+  width: 100%;
+  line-height: 30px;
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 15px;
+  color: #5d5d5d;
 }
 </style>

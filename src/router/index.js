@@ -100,17 +100,17 @@ export default new Router({
       children: [
         {
           path: 'list',
-          name: 'list',
+          name: '列表',
           component: adminList
         },
         {
           path: 'update',
-          name: 'update',
+          name: '修改',
           component: adminUpdate
         },
         {
           path: 'create',
-          name: 'create',
+          name: '创建',
           component: adminCreate
         },
       ]
